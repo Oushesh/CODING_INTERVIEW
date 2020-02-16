@@ -63,7 +63,8 @@ loop:
         swap(current,left)
 '''
 class Solution_nth():
-    def smallest_n():
+    def smallest_n(self,number,n):
+        
         return None
 
 if __name__ == '__main__':
