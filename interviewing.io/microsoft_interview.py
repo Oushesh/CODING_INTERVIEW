@@ -61,9 +61,45 @@ As we loop over the points:
 Priority Queue:
 '''
 class Solution_Opimized:
-    def distance(self,points,vertex):
-        return distances
+    def distance(self,point,vertex):
+        '''
+        points: List x,y
+        vertex: List #x,y coordinates
+        rtype: float
+        '''
+        return np.sqrt((point[0]-vertex[0])**2+(point[1]-vertex[1])**2)
 
+    #Build the priority queue
+    def priority_queue(self,points,vertex,k):
+        queue = []
+        distances = []
+        for i in points:
+            '''
+            calculate euclidean distance here:
+            '''
+            if len(queue)<k:
+                queue.append(i)
+                sorted(queue,key = lambda point:self.distance(point,vertex)) #returns a sorted list
+                print (queue)
+            else:
+                '''
+                cross check against all elements in the queue
+                compare distance against distances
+                '''
+                for j in range(len(queue)-1):
+                    if self.distance(i,vertex) < self.distance(queue[j],vertex):
+                        #overwrite the queue and update the queue
+                        queue[j]   = i
+                        queue[j+1] = queue[j]
+        return queue
+'''
+def distance_squared(x1,y1,x2,y2):
+    return (x1-x2)**2 + (y1-y2)**2
+target_point = 0,0
+
+a = [[1,5],[1,2],[-1,1]]
+print (sorted(a,key=lambda point:distance_squared(target_point[0],target_point[1],point[0],point[1])))
+'''
 
 if __name__ == "__main__":
     k      = 2
@@ -73,3 +109,8 @@ if __name__ == "__main__":
     distances = mySolution.distance(points,vertex)
     print (distances)
     print ('sorted_points:',mySolution.sort(points,distances,k))
+
+    mySolution_Optimized = Solution_Opimized()
+    mySolution_Optimized.priority_queue(points,vertex,k)
+
+    print ('optimized sorted points:',mySolution_Optimized.priority_queue(points,vertex,k))
