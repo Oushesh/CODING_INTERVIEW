@@ -77,20 +77,20 @@ class Solution_Opimized:
             '''
             calculate euclidean distance here:
             '''
-            if len(queue)<k:
+            if len(queue)<=k:
                 queue.append(i)
                 sorted(queue,key = lambda point:self.distance(point,vertex)) #returns a sorted list
-                print (queue)
             else:
                 '''
                 cross check against all elements in the queue
                 compare distance against distances
                 '''
-                for j in range(len(queue)-1):
+                for j in range(len(queue)):
                     if self.distance(i,vertex) < self.distance(queue[j],vertex):
                         #overwrite the queue and update the queue
-                        queue[j]   = i
-                        queue[j+1] = queue[j]
+                        queue.insert(j,i) #insert i at position j
+                        print ('queue',queue)
+                        queue.pop()
         return queue
 '''
 def distance_squared(x1,y1,x2,y2):
