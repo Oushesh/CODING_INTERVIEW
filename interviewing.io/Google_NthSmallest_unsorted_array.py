@@ -35,11 +35,11 @@ class Solution_Dynamic():
     def smallest(self,number):
         left  = 0
         right = len(number)-1
-        current = 0
+        current = 1
         min_left   = number[0]
         min_right  = number[right]
         while (current < right):
-            if number[current] < min:
+            if number[current] < min_left:
                 min = number[current]
                 current +=1
             if number[right] < number[right-1]:
@@ -51,26 +51,39 @@ class Solution_Dynamic():
 How to improve the algorithm? to only log(n)
 Steps: Start in the middle.
 mid_pointer, left_pointer, right_pointer
-loop:
-    if right(mid) > current:
-        right_pointer +=1
-    else:
-        swap(current,right)
 
-    if left(mid) < current:
-        left_pointer -=1
-    else:
-        swap(current,left)
 '''
 class Solution_nth():
+    def swap(self,a,b):
+        a,b = b,a #pythonic way of swapping
+        return a,b
     def smallest_n(self,number,n):
-        
-        return None
+        if len(number)%2==1:
+            mid = int(len(number)/2)
+        else:
+            mid = int(len(number)+1/2)
+        left = 0
+        right = len(number)-1
+        current = 1
+        '''
+        loop over the entire list only once
+        '''
+        while (current<=right):
+            if number[current] < number[left]:
+                number[left],number[current]= number[current], number[left]
+                left +=1
+            elif number[right] < number[current]:
+                number[current],number[right]=number[right],number[current]
+                right -=1
+            else:
+                current +=1
+        return number
 
 if __name__ == '__main__':
     number = [3,2,5,6]
     n      = 2 #second smallests
     output = Solution()
     print (output.smallest(number,n))
-    output_Dynamic = Solution_Dynamic()
-    print (Solution_Dynamic.smallest(number,n))
+
+    output_nth = Solution_nth()
+    print ('output_nth:',output_nth.smallest_n(number,n))
