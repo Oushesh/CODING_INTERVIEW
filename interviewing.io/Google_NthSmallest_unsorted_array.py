@@ -1,4 +1,7 @@
 '''
+Reference for the link: https://interviewing.io/recordings/Java-Google-1/
+'''
+'''
 # 1 6 3 9 2 5
 #1st smallest = 1
 #2nd smallest = 2
@@ -51,7 +54,6 @@ class Solution_Dynamic():
 How to improve the algorithm? to only log(n)
 Steps: Start in the middle.
 mid_pointer, left_pointer, right_pointer
-
 '''
 class Solution_nth():
     def swap(self,a,b):
@@ -66,7 +68,8 @@ class Solution_nth():
         right = len(number)-1
         current = 1
         '''
-        loop over the entire list only once
+        loop over the list only once
+        only under the condition that current <=right
         '''
         while (current<=right):
             if number[current] < number[left]:
@@ -77,10 +80,11 @@ class Solution_nth():
                 right -=1
             else:
                 current +=1
-        return number
+        return number[:n]
 
 if __name__ == '__main__':
     number = [3,2,5,6]
+    number = [5,6,3,15,11]
     n      = 2 #second smallests
     output = Solution()
     print (output.smallest(number,n))
