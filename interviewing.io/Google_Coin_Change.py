@@ -11,9 +11,6 @@ Itereativiely divide until no remainder.
 Lets try Greedy approach first.
 '''
 
-'''
-Search Algorithm: BFS
-'''
 
 '''
 Dynamic Programming. Induction
@@ -24,9 +21,9 @@ O coins chosen: [0,0,0,0]
 
 Condition of check: total - value of coin = remainder.
 how to decide if to take or not? well check if total exceeds.
-check if the the remainder is inside the array.
-
+check if the the remainder is inside the array, thats more of a dict approach
 '''
+
 class Solution():
     def min_coins_greedy(self,cents,coins):
         if cents < 1:
@@ -58,26 +55,31 @@ class Solution():
     TOCHECK: Nice
     '''
     def min_coins_multi_dp(self,cents,coins):
-        if cents <1:
+        if cents < 1:
             return 0
-        sum = 0
+        sum       = 0
         num_coins = 0
-        remainder = 0
-        choice = [0 for i in coins]
+        choice    = [0 for i in coins]
+        current   = cents #at this point original number
         for i  in range(len(coins)):
-            if (sum+num_coins*coins[i])<=cents:
-                num_coins=int(cents/coins[i])
-                remainder = cents%coins[i]
-                choice[i]=num_coins #changed to the answer of the divisor
-                sum +=num_coins*coins[i]
-        return choice
+            if (sum)<=cents:
+                num_coins = int(current/coins[i])
+                choice[i] = num_coins #changed to the answer of the divisor
+                remainder = current%coins[i] #iteration 1:
+                #update remainder with cents at the beginning
+                current     = remainder
+                sum         += num_coins*coins[i]
+        return sum(choice)
+
+'''
+How do we now modify the code to find the smallest number of coins?
+How do we rewrite the problem statement into a search algorithm?
+'''
 
 if __name__ == "__main__":
     coins = [25,10,5,1]
-    cents = 72
+    cents = 70
     output = Solution()
     print ('The number of coins',output.min_coins_greedy(cents,coins))
-
     print ('The number of coins',output.min_coins_dp(cents,coins))
-
     print ('The number of coins multiple:',output.min_coins_multi_dp(cents,coins))
