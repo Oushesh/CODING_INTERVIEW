@@ -42,13 +42,63 @@ sort (9,8,1,3,2) --> reverseTrue
 //Find sum of hours
 Same as leetcode question sum(list) <= a given number
 
+Example:
 Lets use Dynamic Programming without sorting:
+[2,3,4,10,7,5], Havehours --> 9
 
+Dynamic Sorting and Summing:
+
+if len(meetings)==odd:
+    center = len(meetings)+1/2
+else:
+    center= len(meetings)/2
+
+left_pointer = 0
+right_pointer = len(meetings)
+output = []
+while (center <=right):
+    if (number_right+number_left)<haveHours:
+        left -=1
+        right+=1
 
 '''
+class Solution_Dynamic():
+    def sortmeetings_Dynamic(self,meetings):
+        if len(number)%2==1:
+            mid = int(len(meetings)/2)
+        else:
+            mid= int(len(meetings)+1/2)
 
-class Solution_Dynamic:
-    def optimizemeetings_Dynamic(self,meetings,haveHours):
+        left    = 0
+        right   = len(meetings)-1
+        current = 1
+        sum     = 0
+        while (current<=right):
+            if meetings[current]['hours'] < meetings[left]['hours']:
+                meetings[left]['hours'],meetings[current]['hours']= meetings[current]['hours'], meetings[left]['hours']
+                left +=1
+            elif meetings[right]['hours'] < meetings[current]['hours']:
+                meetings[current]['hours'],meetings[right]['hours'] = meetings[right]['hours'],meetings[current]['hours']
+                right -=1
+            else:
+                current +=1
+        return meetings
+
+    def optimize_meetings(self,sorted_meetings,haveHours):
+        '''
+        Since we have a dynamic sorted meeting dict already: lets start from the
+        right: if right < havehours else right=right-1; check(right +right-1) < Havehours:
+
+        '''
+        index = []
+        sum = 0
+        dict = {}
+        for i  in range(len(sorted_meetings)):
+            sum+=sorted_meetings[i]['hours']
+            if sum <= haveHours:
+                dict[sorted_meetings[i]['hours']] = haveHours-sorted_meetings[i]['hours']
+                index.append(i)
+        return index
 
 
 if __name__ == "__main__":
@@ -58,3 +108,5 @@ if __name__ == "__main__":
 
     object = Solution()
     print (object.optimizeMeetings(meetings,haveHours))
+    object_Dynamic = Solution_Dynamic()
+    print (object_Dynamic.optimize_meetings(meetings,haveHours))
