@@ -68,7 +68,6 @@ class Solution_Dynamic():
             mid = int(len(meetings)/2)
         else:
             mid= int(len(meetings)+1/2)
-
         left    = 0
         right   = len(meetings)-1
         current = 1
@@ -88,7 +87,6 @@ class Solution_Dynamic():
         '''
         Since we have a dynamic sorted meeting dict already: lets start from the
         right: if right < havehours else right=right-1; check(right +right-1) < Havehours:
-
         '''
         index = []
         sum = 0
