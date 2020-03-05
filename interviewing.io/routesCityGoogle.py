@@ -12,7 +12,7 @@ class Tree_List:
         tree = {}
         for v1, v2 in edges:
             tree.setdefault(v1, []).append(v2)
-            tree.setdefault(v2, []).append(v1)
+            #tree.setdefault(v2, []).append(v1)
         return tree
 
     def setdefault(self, key, default=None):
@@ -34,6 +34,6 @@ if __name__ == '__main__':
     '''
     tree = Tree(1, Tree(2, 2.1, 2.2), Tree(3, 3.1))
     print (tree.left.right)
-    edges = [[1, 2], [1, 3], [3, 4], [3, 5], [5, 7], [5, 8]]
+    edges = [[1, 2], [1, 3], [2,3],[3, 4], [3, 5], [5, 7], [5, 8]]
     myTree = Tree_List()
     print(myTree.createTreeFromEdges(edges))
