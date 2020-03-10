@@ -59,7 +59,6 @@ class WordGraph:
     def __init__(self):
         self.words = {}
 
-
     def addWords(self,words):
         if not word in self.words:
             self.words[word]=Node(word)
@@ -110,7 +109,6 @@ class WordGraph:
         return self.BFS(start,end)
 
 #Testing here:
-
 if __name__ == '__main__':
     dictionary = ['dot','cat','hot','hog','eat','dug','dig']
     g = WordGraph()

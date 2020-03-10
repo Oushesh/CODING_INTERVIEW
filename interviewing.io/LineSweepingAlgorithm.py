@@ -51,7 +51,6 @@ class LineSweeping():
 
     def linecount(self,rectangles):
         count = 0
-        open  = { key:[] for key in rectangles.keys()} #keep track of the openinng edge of rectangles
         open = {}
         close = {} #keep track of closing edge of rectangles
         sorted_rectangles = self.sort(rectangles)
@@ -66,16 +65,16 @@ class LineSweeping():
 
         for x in value_range: #move from min_x to max_x in steps of 0.5
             for rect_name,rect_coordinate in sorted_rectangles.items():
+
                 if x == rect_coordinate[0] and len(open)==0:
                     open[' '] = rect_name
                     #open.append(rectangle)
+
                 elif x == rect_coordinate[0] and len(open)>0: #we already encountered something before
                     '''
                     Find overlap between current line and all in the open dict
                     '''
                     for parent, children in open.items():
-                        #for child in children:
-                        #TODO: add the check
                         if children:
                             if self.line_overlap(rect_coordinate,sorted_rectangles[children]):
                                 open[children] = [rect_name]
