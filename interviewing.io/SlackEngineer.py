@@ -17,7 +17,7 @@
 #Bidirectional  breadth first search.
 #cuts the runtime down. HOw do we tackle the problem of visited nodes?
 
-dictionary = ['dot','cat','hot','hog','eat','dug','dig']
+#dictionary = ['dot','cat','hot','hog','eat','dug','dig']
 
 #Write your thought:
 #. Two nodes are connected if they differ by 1 letter
@@ -25,7 +25,6 @@ dictionary = ['dot','cat','hot','hog','eat','dug','dig']
 #2. Graph Algorithm --> Breadth First Search
 #3. Runtime O(V+E): where V is the number of vertices and E: edges
 #Can we do better?
-
 
 #Can we do better?
 #Bidirectional Search ??
@@ -54,19 +53,18 @@ class Node:
                 return False
             return True
 
-
 class WordGraph:
     def __init__(self):
         self.words = {}
 
     def addWords(self,words):
-        if not word in self.words:
-            self.words[word]=Node(word)
+        for word in self.words:
+            if not word in self.words:
+                self.words[word] = Node(word)
 
     def linkWords(self,word1,word2):
         if word1 in self.words and word2 in self.words:
             self.words.addNeighbor(self.words[word2])
-
 
     #We define the Breadth First algorithm:
     #takes in node, start word and destination
@@ -96,7 +94,7 @@ class WordGraph:
                     q1.put(neighbor)
         return False
 
-    def isTransformable(self, start,end, dictionary):
+    def isTransformable(self,start,end,dictionary):
         self.addWords(start)
         self.addWords(end)
 
@@ -112,5 +110,6 @@ class WordGraph:
 if __name__ == '__main__':
     dictionary = ['dot','cat','hot','hog','eat','dug','dig']
     g = WordGraph()
-    assert(g.isTransformable('dog','hat',dictionary))
+    print (g.isTransformable('dog','hat',dictionary))
+    print (g.isTransformable('dog','ice', dictionary))
     assert(not g.isTransformable('dog','ice', dictionary))
