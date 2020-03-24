@@ -24,11 +24,13 @@ we can update the distance by 1 up. dist+=1
 '''
 Edit Distance toleration to more than 1:
 Build a distance matrix between the characters
+Build zeros where
    a b c d
 a  0 1 1 1
 y  1 1 1 1
 c  1 1 0 1
-d  1 1 1 0
+
+Difference then here is 2 characters between 'abcd' and 'ayc'
 
 Examaple 2:
   a b c d
@@ -84,25 +86,29 @@ class Solution():
         return True
 
     def distance_matrix(self,s1,s2):
-        distance = [[]]
-        count_zeors = 0
+        distance = [[-1 for i in s1] for j in s2]
+
+        count_zeros = 0
         for i in range(len(s1)):
             for j in range(len(s2)):
-                if not s1[i]==s2[i]:
+                if not s1[i]==s2[j]:
                     distance[i][j] = 1
                 else:
                     distance[i][j] = 0
-                    count_zeors +=1
-        return distance,count_zeors
+                    count_zeros +=1
+        return distance,count_zeros
 
     def compare_by_distance_any_threshold(self,s1,s2,threshold):
         '''
-        Call distance Matrix and count the number of zeors
+        Call distance Matrix and count the number of zeros
         '''
         distance, count_zeros = self.distance_matrix(s1,s2)
-        if max(len(s1),len(s2)) - count_zeros > thresold:
-            return False
-        return True
+        print ('distance_matrix',distance)
+        print (count_zeros)
+        print (max(len(s1),len(s2)))
+        if (max(len(s1),len(s2)) - count_zeros) > threshold:
+            return True
+        return False
 
 
 
@@ -118,3 +124,5 @@ if __name__ == "__main__":
     s5 =  'abc'
 
     print (output.compare_by_distance_set(s4,s5))
+    threshold  = 2
+    print('String comparison any threshold distance:',output.compare_by_distance_any_threshold(s4,s5,threshold))

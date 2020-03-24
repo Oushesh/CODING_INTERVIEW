@@ -1,26 +1,49 @@
 '''
 Write me a program
 that reverse string within brackets
+'cat|dog|cow' --> catgodcow
+'ca|t|dog|c|ow' --> cacdogtow
+'''
 
-'cat(dog)cow' --> catgodcow
-
-'ca(t(dog)c)ow' --> cacdogtow
-
+'''
+Loop in the sequence:
+1. Find the first ( keep track of open ( and closed )
+2. Continue looping until open == closed
+3. Get the index of first open ( and last )
+4.
 
 '''
 
 class Solution():
-    def reverse_string(self,string):
-        split = string.split('|')
+    def spliter(self,string):
+        return string.split('|')
 
-        for i in range(1,len(split)-1):
+    def reverse_substring(self,substring):
+        return substring[::-1]
 
-        ''.join([i for i in split])
-        return output
+    def join(self,splits,reversed,left,right):
+        return splits[left]+reversed+splits[right]
 
-    def main(self,string):
+    def reverse(self,splits):
+        # we will always have odd number of splits
+        # since we have to have an even number of openings+closures
+        mid_index   = int(len(splits)/2) # 0-index based
+        start_index = 0
+        end_index   = len(splits)-1
+        #we then take the middle, reverse it.
+        #combine it with 2 items next to it and then re-reverse
+        #continue until we reach the start index and end_index
 
-        return None
+        left   = mid_index
+        right  = mid_index
+        target = splits[mid_index]
+        while (not left==start_index or not right==end_index):
+            reversed = self.reverse_substring(target)
+            left  -=1
+            right +=1
+            target = self.join(splits,reversed,left,right)
+        return target
+
 
 if __name__ == "__main__":
     s1 = 'cat|dog|cow'
@@ -33,5 +56,7 @@ if __name__ == "__main__":
     s2 = 'ca|t|dog|c|ow'
     #separator = '()'
     output = Solution()
-    print (output.reverse_string(s1))
-    print (output.reverse_string(s2))
+    print (output.spliter(s2))
+
+    splits=['ca', 't', 'dog', 'c', 'ow']
+    print (output.reverse(splits))
