@@ -5,15 +5,6 @@ that reverse string within brackets
 'ca|t|dog|c|ow' --> cacdogtow
 '''
 
-'''
-Loop in the sequence:
-1. Find the first ( keep track of open ( and closed )
-2. Continue looping until open == closed
-3. Get the index of first open ( and last )
-4.
-
-'''
-
 class Solution():
     def spliter(self,string):
         return string.split('|')
@@ -44,6 +35,11 @@ class Solution():
             target = self.join(splits,reversed,left,right)
         return target
 
+    def main(self,string):
+        splits = self.spliter(string)
+        output = self.reverse(splits)
+        return output
+
 
 if __name__ == "__main__":
     s1 = 'cat|dog|cow'
@@ -58,5 +54,5 @@ if __name__ == "__main__":
     output = Solution()
     print (output.spliter(s2))
 
-    splits=['ca', 't', 'dog', 'c', 'ow']
-    print (output.reverse(splits))
+    splits = ['ca', 't', 'dog', 'c', 'ow']
+    print (output.main(s2))
