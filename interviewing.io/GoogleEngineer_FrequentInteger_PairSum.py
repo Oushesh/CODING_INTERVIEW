@@ -52,12 +52,13 @@ class Integer():
     '''
     def pair2sum_complement(self,numbers,sum):
         complement = self.complement(numbers,sum)
-        print (complement)
         #for number in numbers:
+        output = []
         for number in numbers:
             #check if the complement exist in the numbers
             if complement[number] in numbers:
-                return [number,complement[number]]
+                output.append([number,complement[number]])
+        return output
 
     '''
     Find the only integer that only
@@ -71,12 +72,14 @@ class Integer():
                 frequency[number]=1
             else:
                 frequency[number]+=1
-        print (frequency)
+        # print (frequency)
         return number
-
 
 if __name__ == "__main__":
     numbers = [2,2,4,5,4,7,9]
+    numbers3 = [1,9,1,9] #he wants 1,9
+    numbers4 = [1,9,1]  #he wants 1,9
+
     sum     = 13
     solution = Integer()
     print (solution.pair2sum_pointers(numbers,sum))
