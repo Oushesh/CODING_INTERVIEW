@@ -19,7 +19,6 @@ Lets say n = 4
 
 A queen can attack in all directions (8-connected
 components based, recursive search in the directions)
-
 '''
 
 class chessboard:
