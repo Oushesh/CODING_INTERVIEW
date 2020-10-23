@@ -139,7 +139,7 @@ writing.
 4. 3 Body paragraphs are roughly the same thing with different content.
 
 5. Make Sure you follow the prompt's instructions. If the prompt is asking you to.
-6.  
+6.
 '''
 
 

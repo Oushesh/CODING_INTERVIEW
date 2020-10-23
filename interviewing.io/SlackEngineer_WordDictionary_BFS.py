@@ -45,7 +45,8 @@ class Node:
 
 class Graph:
     def __init__(self):
-        self.words = {} #dictionary, neighbours a list {'cat':['dat','car']} #differ only by 1 letter
+        self.words = {} #dictionary, neighbours a list {'cat':['dat','car']}
+        #differ only by 1 letter
 
     def addwords(self,word):
         for word in self.words:
@@ -94,7 +95,7 @@ class Graph:
 
 
 if __name__ == "__main__":
-    dictionary = ['dot','cat','hot','hog','eat','dug','dig']
+    dictionary = ['dot','cat','hot','hog','eat','dug','dog']
     g = Graph()
     start = 'dog'
     end   = 'hat'

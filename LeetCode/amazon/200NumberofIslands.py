@@ -36,6 +36,7 @@ class Solution:
                     check(i,j)
                     count +=1
         return count
+        
 if __name__ =='__main__':
     grid = [[11110],[11010],[11000],[00000]]
     object = Solution()

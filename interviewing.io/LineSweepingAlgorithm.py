@@ -83,10 +83,10 @@ class LineSweeping():
                                 #Query the parent of the current node in the tree
                                 while (self.parent(open,children)):
                                     children = self.parent(open,children)
+                                open[key] 
                                 open[key] +=[children]
             print (open)
         return len(open)
-
 
 if __name__ == "__main__":
     rectangles = {'a':[1,1,6,10],
@@ -96,5 +96,4 @@ if __name__ == "__main__":
     solution = LineSweeping()
     sorted_rectangles = solution.sort(rectangles)
     print ('sorted rectangles:',sorted_rectangles)
-
     print(solution.linecount(rectangles))

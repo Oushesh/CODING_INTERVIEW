@@ -13,6 +13,9 @@ the list only once, So time complexity has to be n.
 '''
 
 class Integers:
+    '''
+    nlogn Time Complexity
+    '''
     def third_smallest_sort_approach(self,numbers):
         assert (len(numbers)>0)
         return sorted(numbers)[2]
@@ -28,6 +31,10 @@ class Integers:
         return third_smallest
         '''
 
+    '''
+    2 pointers approach. Declare 1 pointer on left, one on right
+    O(logn)
+    '''
     def third_smallest_finest_approach(self,numbers):
         '''
         This approach is the finest since
@@ -41,7 +48,7 @@ class Integers:
                 numbers[left-1],numbers[left] = numbers[left], numbers[left-1]
                 left +=1 #move  left to the right
             if numbers[right] < numbers[right-1]:
-                numbers[right],numbers[right-1] = numbers[right-1], numbers[right]
+                numbers[right], numbers[right-1] = numbers[right-1], numbers[right]
                 right -=1
         return numbers[2]
 

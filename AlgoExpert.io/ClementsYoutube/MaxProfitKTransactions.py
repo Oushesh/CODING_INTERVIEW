@@ -18,8 +18,6 @@ stock if you're still holding another share- Also,
 you don't need to use all k transaction that you're allowed.
 '''
 
-
-
 #Max Profit
 #Profit = Selling - Buying
 #Sell after buy
