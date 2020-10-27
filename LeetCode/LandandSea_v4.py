@@ -3,7 +3,7 @@ A more elegant approach to solving the problem
 of counting islands lets take the list
 and build a adjacency tree.
 
-Lets say given rectangles:
+Lets say given rectangles: 
 '''
 
 class Rectangles():

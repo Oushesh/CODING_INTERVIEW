@@ -4,7 +4,8 @@ we rewrite it into a graph (dict) datastructure of
 adjaceny elements
 W
 
-1. map2graph. How to define adjacency pairs? --> if ()
+1. map2graph. How to define adjacency pairs?
+--> 
 
 '''
 

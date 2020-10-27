@@ -7,37 +7,43 @@ cover of a rectangular region.
 '''
 
 '''
-Thought Strategies:
+Algorithmic Development:
+1. Lets loop over min or max of the whole given Cartesian coordinates
+2. fILL THE 2D Array with Os. (initialisation)
+3. For each rect in rectangles:
+    loop over all the space and update the 0s with 1s if its fulfilled.
 
-Check the corner points:
-Bottom Left: BL
-Bottom Right: BR
-Top Left: TL
-Top Right: TR
+4. Build a hashmap (python dict) to keep track of each coordinate whether
+   its filled or not. dict = {(0,0):0} for example or 1s
 
-1. Step 1: From the rectangles: Get BL,BR,TL,TR
-2. Step 2: Check that corners only Touch. No overlap
+5. Check if cell already has 1s: if yes break
 
-3. Loop from min. x to max x.
-(1,1) --> (1,3) (same rectangle) (max of current rectangle)
-(1,3) --> search if we have
+6. Finally, check if Os are present in 2D map dict: if yes break.
 
-Breadth First Technique
-(1,1) --> (1,3) --> (3,3) (no conenection here)
-      --> (3,1) --> (3,3)
-
-(1,3) --> ()
-
+7. Like this we checked overlap or emptiness which both lead to being
+false.
 '''
 
-class PerfectRectangle:
-    def check_corner(self):
-        return None
+
+class Rectangles():
+    #Build map and keep track of filled or not --> Hasmap, dict
+    def buildgraph(self,rectangles):
+        #find lowest left and most upper right coordinate
+        lowest_left = min(min([rect[0] for rect in rectangles],[rect[1] for rect in rectangles]))
+        upper_right = max(max([rect[0] for rect in rectangles],[rect[1] for rect in rectangles]))
+        #loop initialise with 0s
+        graph = {}
+        for i in range(lowest_left):
+            graph[] =
+
+        return graph
 
 
-if __name__ == "__main__":
-    rectangles = [[1,1,3,3],
-    [3,1,4,2],
-    [3,2,4,4],
-    [1,3,2,4],
-    [2,3,3,4]]
+
+
+if __name__ = '__main__':
+    #Examples return rectangles 1:
+    rectangles = [[(1,1),(3,3)],[(3,1),(4,2)],[(3,2),(4,4)],[(1,3),(2,4)],[(2,3),(3,4)]]
+
+    current_graph = 
+    print ('The state: empty of filled of the grid is:',)
