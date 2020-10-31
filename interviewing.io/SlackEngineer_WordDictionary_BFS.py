@@ -1,9 +1,9 @@
-#Reference :
+#Reference : 
 '''
 start word: 'dog'
 end word: 'hat'
 
-dictionary = ['dot', 'cat','hot','hog','eat','dug',dig]
+dictionary = ['dot', 'cat','hot','hog','eat','dug','dig']
 '''
 '''
 2 nodes are connected if they differ by 1 letter
@@ -93,9 +93,8 @@ class Graph:
 
 #How to make it better?
 
-
 if __name__ == "__main__":
-    dictionary = ['dot','cat','hot','hog','eat','dug','dog']
+    dictionary = ['dot','cat','hat','hog','eat','dug','dog']
     g = Graph()
     start = 'dog'
     end   = 'hat'
