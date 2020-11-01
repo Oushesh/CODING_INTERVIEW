@@ -60,7 +60,7 @@ class Rectangles():
             current_area = width*length
             sum_area_sub_rect +=current_area
 
-        if sum_area_sub_rect == area:big_rect:
+        if sum_area_sub_rect == area_big_rect:
             '''
             If this part is true then we have no overlap
             else not. If both wanted
@@ -68,61 +68,53 @@ class Rectangles():
             return True
         return False
 
-    def set_corners(self,rectangles):
+    def expand_corners(self,corners):
+        '''
+        example: (1,2),(3,5) --> becomes (1,2),(3,5),(1,5),(3,2)
+        '''
+        return [upper_right,lower_left,(lower_left[0],upper_right[1]),(upper_right[0],lower_left[1])]
+
+    def recursive_neg(self,all_sets,index=0):
+
+        next = index+1
+
+        while not (len(all_sets[index]-all_sets[current]))==0:
+            index+=1
+            self.recursion_neg(all_sets,index)
+        return None
+
+    def check_corners(self,rectangles):
         upper_right, lower_left = self.upper_right_lower_right(rectangles)
         big_set = set()
-        sub_rect_set = set()
+        all_sets = []
 
         big_set.add(upper_right)
         big_set.add(lower_left)
+        #Update Big set with
+        big_set.add(self.expand_corners([upper_right,lower_left]))
 
         for rect in rectangles:
             #populate 4 corners
-            current_rect
+            #Then pass them to set() method in python
+            current_set = set(self.expand_corners(rect))
+            all_sets.append(current_set)
 
-        return big_set, sub_rect_set
+        #now that we have all the sets we minus all
+        #The check is good if we have empty set
+        #Perform recursive function: setA - set B
+        self.recursive_neg(rectangles)
 
-    def expand_corners(self,corners):
-        '''
-        example: (1,2),(3,1)
 
-        '''
-        four_corners = [upper_right,lower_left,(lower_left[0],upper_right[1]),(lower_left[1],upper_right[0])]
-        return four_corners
+        return
+
      def corners_check(self,rectangles):
          '''
-         1. Build a set structure big_rect
-         2. Take in each rect, populate the corners:
+         input: rectangles of type list of list of tuples
+         1.
          '''
-         upper_right, lower_left =  self.upper_right_lower_left(rectangles)
-
-         #Build all 4 corners
-         big_set = set([lower_left,upper_right])
-
-         '''
-         Call the function to expand the coordinates
-         to 4 corner points
-         '''
-
-         Four_corner = [lower_left,upper_right,(),()]
-         subset_k = set()
-         subset_k = set()
-
-         big_set.add([(upper_right,lower_left),(upper_right,lower_left)])
-         big_set.add([(),()])
-
-         for
-         '''
-         Here we need the comparison
-         between both set data structures
-         '''
-
-
-
-         for rect in rectangles:
-             rect = [][]
             return False
          return True
+
 if __name__ == '__main__':
     #First rectangle
     rectangles = [[(1,1),(3,3)],[(3,1),(4,2)],[(3,2),(4,4)],[(1,3),(2,4)],[(2,3),(3,4)]]
