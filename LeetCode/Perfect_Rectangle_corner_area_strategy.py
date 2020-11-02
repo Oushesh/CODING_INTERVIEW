@@ -1,10 +1,18 @@
 '''
+@author: Oushesh Haradhun. In the light of carving the path to the United States of America.
+
+This is a mock interview question from Leetcode called: Perfect_Rectangle_391.py
+
 1. Take the given lower and upper corner points.
-   Exapnd each of the rectangles. From 2 corners get all the 4 corners
+   Exapnd each of the rectangles.
+   From 2 corners get all the 4 corners.
 
-2. Store them as a set data structure.
+2. Store them as a set data structure. (Why: in python language its easier to eliminate
+   common members of list if represented as set. Moreover set has O(1) time complexity
+   for element lookup. Intersection and Union operations are way easier in set.)
 
-3. Build 2 sets 1 for the lower left and upper right
+3. Build 2 sets: - big_set() comprising of the 4 corner coordinates of external rectangle
+                 - for each given
 
 4. Iteratively find the for each of them if they have duplicates,
    remove them until the set is empty.
@@ -37,7 +45,7 @@ lowest_left, upper_right
 '''
 
 class Rectangles():
-    def upper_right_lower_right(self,rectangles):
+    def upper_right_lower_left(self,rectangles):
         '''
         returns the upper right and lower left corners
         type: (1,1), (4,4)
@@ -63,7 +71,7 @@ class Rectangles():
         if sum_area_sub_rect == area_big_rect:
             '''
             If this part is true then we have no overlap
-            else not. If both wanted
+            else not.
             '''
             return True
         return False
@@ -72,60 +80,65 @@ class Rectangles():
         '''
         example: (1,2),(3,5) --> becomes (1,2),(3,5),(1,5),(3,2)
         '''
-        return [upper_right,lower_left,(lower_left[0],upper_right[1]),(upper_right[0],lower_left[1])]
+        return [corners[0],corners[1],(corners[0][0],corners[1][1]),(corners[1][0],corners[0][1])]
 
-    def recursive_neg(self,all_sets,index=0):
-
-        next = index+1
-
-        while not (len(all_sets[index]-all_sets[current]))==0:
-            index+=1
-            self.recursion_neg(all_sets,index)
-        return None
+    def recursive_set_delete(self,List_of_sets):
+        #all_sets: list of sets
+        '''
+        recursively delete elements in the list of sets
+        list of sets:
+        [
+            {(1, 3), (2, 3), (1, 1), (2, 1)},
+            {(1, 3), (2, 3), (2, 4), (1, 4)},
+            {(4, 2), (3, 2), (3, 1), (4, 1)},
+            {(4, 2), (3, 2), (4, 4), (3, 4)}
+        ]
+        '''
+        resultant_set = List_of_sets[0]
+        for i in range(1,len(List_of_sets)):
+            resultant_set = resultant_set - List_of_sets[i]
+        return resultant_set
 
     def check_corners(self,rectangles):
-        upper_right, lower_left = self.upper_right_lower_right(rectangles)
-        big_set = set()
+        upper_right, lower_left = self.upper_right_lower_left(rectangles)
+
+        print ('Upper_right',upper_right)
+        print ('lower_left',lower_left)
+
+        #Update Big set with
+        big_corners = [lower_left,upper_right]
+        big_set = set(self.expand_corners(big_corners))
         all_sets = []
 
-        big_set.add(upper_right)
-        big_set.add(lower_left)
-        #Update Big set with
-        big_set.add(self.expand_corners([upper_right,lower_left]))
-
         for rect in rectangles:
-            #populate 4 corners
-            #Then pass them to set() method in python
             current_set = set(self.expand_corners(rect))
             all_sets.append(current_set)
+        print ('List of sets:',all_sets)
 
         #now that we have all the sets we minus all
         #The check is good if we have empty set
         #Perform recursive function: setA - set B
-        self.recursive_neg(rectangles)
 
+        resultant_set = self.recursive_set_delete(all_sets)
+        print ('resultant_set',resultant_set)
+        if len(self.recursive_set_delete(rectangles))==0 and self.area_check(rectangles):
+            #resultant set_is empty and there is no area overlap
+            return True
+        return False
 
-        return
-
-     def corners_check(self,rectangles):
-         '''
-         input: rectangles of type list of list of tuples
-         1.
-         '''
-            return False
-         return True
 
 if __name__ == '__main__':
     #First rectangle
     rectangles = [[(1,1),(3,3)],[(3,1),(4,2)],[(3,2),(4,4)],[(1,3),(2,4)],[(2,3),(3,4)]]
     #Second rectangle
-    rectangles = [[(1,1),(2,3)],[(1,3),(2,4)],[(3,1),(4,2)],[(3,2),(4,4)]]
+    #rectangles = [[(1,1),(2,3)],[(1,3),(2,4)],[(3,1),(4,2)],[(3,2),(4,4)]]
 
     #'Call the function and print the result'
-    current_graph = Rectangles()
-    print ('The upper right and lower left corners:',current_graph.upper)
+    current_rectangle = Rectangles()
+    print ('The sub rectangles fit together:', current_rectangle.check_corners(rectangles))
 
     '''
+    set_A = set([(1,1),(3,1),(1,3),(3,3)])
     set_B = set([(3,1),(3,2),(4,2),(4,1)])
     set_C = set([(3,2),(3,4),(4,2),(4,4)])
     set_D = set([(2,3),(3,4),(2,4),(3,3)])
@@ -138,3 +151,4 @@ if __name__ == '__main__':
     big_set = set([(1,1),(4,4),(1,4),(4,1)])
     set_A - set_B - set_C - set_D - set_E - big_set
     set()
+    '''
