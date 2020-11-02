@@ -60,12 +60,12 @@ class Rectangles():
         = area of bigger rectangle
         '''
         upper_right, lower_left = self.upper_right_lower_left(rectangles)
-        area_big_rect = (upper_right[0]-lower_left[0])*(upper_right[1]-lower_right[1])
+        area_big_rect = (upper_right[0]-lower_left[0])*(upper_right[1]-lower_left[1])
         sum_area_sub_rect = 0
         for rect in rectangles:
             width = rect[1][0]-rect[0][0]
             height = rect[1][1]-rect[0][1]
-            current_area = width*length
+            current_area = width*height
             sum_area_sub_rect +=current_area
 
         if sum_area_sub_rect == area_big_rect:
@@ -74,7 +74,8 @@ class Rectangles():
             else not.
             '''
             return True
-        return False
+        else:
+            return False
 
     def expand_corners(self,corners):
         '''
@@ -82,7 +83,7 @@ class Rectangles():
         '''
         return [corners[0],corners[1],(corners[0][0],corners[1][1]),(corners[1][0],corners[0][1])]
 
-    def recursive_set_delete(self,List_of_sets):
+    def recursive_set_delete(self,list_set):
         #all_sets: list of sets
         '''
         recursively delete elements in the list of sets
@@ -94,37 +95,40 @@ class Rectangles():
             {(4, 2), (3, 2), (4, 4), (3, 4)}
         ]
         '''
-        resultant_set = List_of_sets[0]
-        for i in range(1,len(List_of_sets)):
-            resultant_set = resultant_set - List_of_sets[i]
-        return resultant_set
+
+        output_set = list_set[0]
+        for i in range(1,len(list_set)):
+            print ('index',i,'resultant_set',output_set, 'List sets',list_set[i])
+            outptut_set = output_set - list_set[i]
+        return output_set
 
     def check_corners(self,rectangles):
         upper_right, lower_left = self.upper_right_lower_left(rectangles)
 
-        print ('Upper_right',upper_right)
-        print ('lower_left',lower_left)
 
         #Update Big set with
         big_corners = [lower_left,upper_right]
         big_set = set(self.expand_corners(big_corners))
         all_sets = []
-
+        all_sets.append(big_set)
         for rect in rectangles:
             current_set = set(self.expand_corners(rect))
             all_sets.append(current_set)
-        print ('List of sets:',all_sets)
 
         #now that we have all the sets we minus all
         #The check is good if we have empty set
         #Perform recursive function: setA - set B
 
+        print ('all_sets',all_sets)
         resultant_set = self.recursive_set_delete(all_sets)
-        print ('resultant_set',resultant_set)
-        if len(self.recursive_set_delete(rectangles))==0 and self.area_check(rectangles):
+        print (resultant_set)
+        if len(resultant_set)==0:
+            print ('corners fit perfectly together')
+        if self.area_check(rectangles):
             #resultant set_is empty and there is no area overlap
             return True
-        return False
+        else:
+            return False
 
 
 if __name__ == '__main__':
