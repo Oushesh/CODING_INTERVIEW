@@ -2,6 +2,20 @@
 @author: Oushesh Haradhun. In the light of carving the path to the United States of America.
 
 This is a mock interview question from Leetcode called: Perfect_Rectangle_391.py
+This question is really famous for apple software engineering roles.
+It involves Geometrical understanding and some important data structure
+understanding.
+
+My proposal:
+
+Based on the constraint given:
+We cannot have overlap nor empty spaces left by the subrectangles inside
+the main big rectangle.
+
+So thus:
+Check that sum(area of subrectangles) equals area of main rectangle.
+
+Then check overlapping corner points.
 
 1. Take the given lower and upper corner points.
    Exapnd each of the rectangles.
@@ -12,10 +26,16 @@ This is a mock interview question from Leetcode called: Perfect_Rectangle_391.py
    for element lookup. Intersection and Union operations are way easier in set.)
 
 3. Build 2 sets: - big_set() comprising of the 4 corner coordinates of external rectangle
-                 - for each given
+                 - for each given rect in the given rectangle data:
+                    expand the 2 coordinates to  4 and get all 4 of them.
+                    add it to a list of set data structure.
 
-4. Iteratively find the for each of them if they have duplicates,
-   remove them until the set is empty.
+4. Combine the big_set and list of sets of subrectangle coordinates into a big list
+   of sets.
+
+5. Then perform sets subraction. --> set subraction = removing common coorindate
+   pairs in the sets. Mathematically it means if the rectangles fit exactly,
+   all the coordinate pairs have to have pairs and commons.
 
 5. If the set is empty then: all of the subrectangles fit, otherwise not.
 
@@ -23,25 +43,6 @@ This is a mock interview question from Leetcode called: Perfect_Rectangle_391.py
 
 7. If there is no area overlap, and the set of corners is empty -->
    then the subrectangles form a perfect rectangle.
-
-Lets walk the interviewer through it.
-
-Example:
-[(1,1),(3,3)],[(3,1),(4,2)],[(3,2),(4,4)],[(1,3),(2,4)],[(2,3),(3,4)]
-
-rectangles = {A:[(1,1),(3,3)],
-              B:[(3,1),(4,2)],
-              C:[(3,2),(4,4)],
-              D:[(1,3),(2,4)],
-              E:[(2,3),(3,4)]}
-
-lowest_left, upper_right
-
-2 sets. Find the common in big_set and rectangle_set.
-3. remove them from the list until list is empty.
-
-4. Perform the operation area(rectangle) = sum(area of subrectangles)
-5. If operation successful then success.
 '''
 
 class Rectangles():
@@ -98,61 +99,42 @@ class Rectangles():
 
         output_set = list_set[0]
         for i in range(1,len(list_set)):
-            print ('index',i,'resultant_set',output_set, 'List sets',list_set[i])
-            outptut_set = output_set - list_set[i]
+            print ('index',i,'resultant_set',output_set)
+            output_set = output_set - list_set[i]
         return output_set
 
     def check_corners(self,rectangles):
         upper_right, lower_left = self.upper_right_lower_left(rectangles)
 
-
         #Update Big set with
         big_corners = [lower_left,upper_right]
         big_set = set(self.expand_corners(big_corners))
         all_sets = []
-        all_sets.append(big_set)
         for rect in rectangles:
             current_set = set(self.expand_corners(rect))
             all_sets.append(current_set)
-
+        all_sets.append(big_set)
         #now that we have all the sets we minus all
         #The check is good if we have empty set
         #Perform recursive function: setA - set B
 
-        print ('all_sets',all_sets)
         resultant_set = self.recursive_set_delete(all_sets)
-        print (resultant_set)
+
         if len(resultant_set)==0:
             print ('corners fit perfectly together')
-        if self.area_check(rectangles):
-            #resultant set_is empty and there is no area overlap
-            return True
+            if self.area_check(rectangles):
+                #resultant set_is empty and there is no area overlap
+                return True
         else:
             return False
-
 
 if __name__ == '__main__':
     #First rectangle
     rectangles = [[(1,1),(3,3)],[(3,1),(4,2)],[(3,2),(4,4)],[(1,3),(2,4)],[(2,3),(3,4)]]
+
     #Second rectangle
     #rectangles = [[(1,1),(2,3)],[(1,3),(2,4)],[(3,1),(4,2)],[(3,2),(4,4)]]
 
     #'Call the function and print the result'
     current_rectangle = Rectangles()
     print ('The sub rectangles fit together:', current_rectangle.check_corners(rectangles))
-
-    '''
-    set_A = set([(1,1),(3,1),(1,3),(3,3)])
-    set_B = set([(3,1),(3,2),(4,2),(4,1)])
-    set_C = set([(3,2),(3,4),(4,2),(4,4)])
-    set_D = set([(2,3),(3,4),(2,4),(3,3)])
-    set_E = set([(1,3),(2,4),(1,4),(2,3)])
-    set_A - set_B - set_C - set_D - set_E
-    {(1, 2)}
-    set_A = set([(1,1),(3,1),(1,3),(3,3)])
-    set_A - set_B - set_C - set_D - set_E
-    {(1, 1)}
-    big_set = set([(1,1),(4,4),(1,4),(4,1)])
-    set_A - set_B - set_C - set_D - set_E - big_set
-    set()
-    '''
