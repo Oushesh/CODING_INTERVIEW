@@ -109,7 +109,6 @@ class Word():
         '''
         word_graph = self.build_graph(dictionary)
 
-
         visited = None
         path = self.dfs(word_graph,start,end,visited)
         print ('path',path)
