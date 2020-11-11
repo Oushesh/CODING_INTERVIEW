@@ -1,6 +1,7 @@
 #Reference: 'interviewing.io'
-#TUM Exercise on search
+#Changing one word from a dictionary to a different one
 
+#Extended to the TUM assignement for Jadaav
 '''
 WHat to say to the interviewer?
 1. This is a search problem with start node: dog
@@ -51,7 +52,7 @@ class Word():
     def difference_set_method(self,word1,word2):
         '''
         Use set method and perform intersection
-        with set operation
+        with set operation coz its easier
         '''
         assert(len(word1)==len(word2)) #if not the its an error
         if len(set(word1)-set(word2))==1:
@@ -69,57 +70,50 @@ class Word():
         'dig:set([])'}
         '''
         graph = {words:set() for words in dictionary}
-        #We do not want to have a bidirectional graph. We dont add twice
-        track = set()
-        for i  in range(len(dictionary)-1):
-            for j in range(1,len(dictionary)):
+        '''
+        Looping creates possibilities of all possible pairs here
+        '''
+        for i  in range(len(dictionary)):
+            for j in range(len(dictionary)):
                 #Call the function differby1 letter here: if True then add it as neighbour
-                if self.difference(dictionary[i],dictionary[j]):
-
+                #Avoid duplicates of the the candidates
+                if self.difference(dictionary[i],dictionary[j]) and not dictionary[i]==dictionary[j]:
+                    #graph[dictionary[i]].append(dictionary[j])
                     graph[dictionary[i]].add(dictionary[j])
         return graph
 
-    '''
-    Pass Graph here and perform dfs
-    '''
-    def dfs(self,graph,start,end,visited):
-        if visited is None:
-            visited = set ()
-        visited.add(start)
-        #Loop over the graph
-        #over the children and not
-        #in visited
-        for neighbours in graph[start]-visited:
-            self.dfs(graph,neighbours,end,visited)
-        return visited
+    def DFS_path(self,graph,start,goal):
         '''
-            else:
-                print ('Goal is reached')
-                return True
-        return False
+        return of all possible paths
+        Here we use a list of lists to represent the outptut
+        with the first as current node and
+        the other one is
         '''
+        stack = [(start, [start])]
+        while stack:
+            (vertex, path) = stack.pop()
+            for next in graph[vertex] - set(path):
+                #check if goal is reached
+                if next == goal:
+                    yield  path + [next] #build the path
+                else:
+                    stack.append((next, path + [next]))
+        return None
 
-    def main(self,dictionary,start,end):
+    '''
+    path exists determine if the words are transformable
+    from start to endnode
+    '''
+    def path_exist(self,generated_paths):
         '''
-        1. Call Function Build graph.
-        2. Then perform dfs on graph and check
-            if goal or end is met.
-        3. If 2. returns true then, is_Transformable
-           else not.
+        Boolean saying whether path exists or not.
         '''
-        word_graph = self.build_graph(dictionary)
-
-        visited = None
-        path = self.dfs(word_graph,start,end,visited)
-        print ('path',path)
-        '''
-        if self.:
+        if len(generated_paths):
             return True
         return False
-        '''
 
 if __name__ == "__main__":
-    dictionary = ['dog','cat','hot','hog','eat','dug','dig']
+    dictionary = ['dog','cat','hot','hog','eat','dug','dig','hat']
     '''
     example: start: 'dog', end: 'hat'
     #Path then is: 'dog'-> 'dot'-> 'hot'->'hat'
@@ -128,7 +122,11 @@ if __name__ == "__main__":
     '''
     start = 'dog'
     end   = 'hat'
-    graph = {}
     current_game = Word()
+    current_graph = current_game.build_graph(dictionary)
+    print ('The adjacency graph from the dictionary words are as follows:',current_graph)
 
-    print ('The given word is transformable:',current_game.main(dictionary,start,end))
+    generated_paths = list(current_game.DFS_path(current_graph,start,end))
+
+    print ('The path from start node to end node is as follows:',generated_paths)
+    print ('Does a path from the given start node to the goal node?:', current_game.path_exist(generated_paths))

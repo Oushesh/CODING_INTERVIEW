@@ -13,7 +13,7 @@ class Generic_Problem():
     def DFS_path(self,graph,start,goal):
         '''
         return of all possible paths
-        Here we use a list of lists for the
+        Here we use a list of lists to represent the outptut
         with the first as current node and
         the other one is
         '''
