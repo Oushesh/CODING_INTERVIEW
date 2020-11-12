@@ -28,7 +28,6 @@ Now algorithmic Thinking:
 In Python we use either recursive function or
 stack for DFS.
 
-
 How do we define the graph?
 graph = {'dog':set(['dot','hot','hat'])}
 '''
@@ -48,7 +47,7 @@ class Word():
             if differences > 1:
                 return False
         return True
-
+    #This one is more efficient
     def difference_set_method(self,word1,word2):
         '''
         Use set method and perform intersection
@@ -81,6 +80,28 @@ class Word():
                     #graph[dictionary[i]].append(dictionary[j])
                     graph[dictionary[i]].add(dictionary[j])
         return graph
+
+    def DFS(self,graph,start,visited=None):
+        if visited is not None:
+            visited = set()
+        visited.add(start)
+        #Traverse the graph
+        for neighbours in graph[start] - visited:
+            self.DFS(graph,start,visited)
+        return visited
+
+    def DFS_path_recursive(self,graph,start,goal,visited=None):
+        '''
+        Take the DFS approach. Traverse the graph,
+        while goal not met:
+            stack all nodes visited, path needed:
+        '''
+        if visited is not None:
+            visited = set()
+        visited.add(start)
+
+
+        return None
 
     def DFS_path(self,graph,start,goal):
         '''
