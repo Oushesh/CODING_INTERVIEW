@@ -81,26 +81,23 @@ class Word():
                     graph[dictionary[i]].add(dictionary[j])
         return graph
 
-    def DFS(self,graph,start,visited=None):
-        if visited is not None:
+    #Use recursive approach to find the path between start and goal
+    #Here we keep the visited as a different set,
+    #the path as a list where we can just append and pop like a stack.
+    #Python advantege
+    def DFS_path_recursive_approach(self,graph,start,goal,visited=None,path=None):
+        if visited is None:
             visited = set()
         visited.add(start)
-        #Traverse the graph
+        if path is None:
+            path = []
+        path.append(start)
+        if start==goal:
+            return path + [start] #alternatively use yield if we yield here or another list to append the list to store
         for neighbours in graph[start] - visited:
-            self.DFS(graph,start,visited)
-        return visited
-
-    def DFS_path_recursive(self,graph,start,goal,visited=None):
-        '''
-        Take the DFS approach. Traverse the graph,
-        while goal not met:
-            stack all nodes visited, path needed:
-        '''
-        if visited is not None:
-            visited = set()
-        visited.add(start)
-
-
+            output=self.DFS_path_recursive_approach(graph,neighbours,goal,visited,path)
+            if output:
+                return output
         return None
 
     def DFS_path(self,graph,start,goal):
@@ -148,6 +145,10 @@ if __name__ == "__main__":
     print ('The adjacency graph from the dictionary words are as follows:',current_graph)
 
     generated_paths = list(current_game.DFS_path(current_graph,start,end))
-
     print ('The path from start node to end node is as follows:',generated_paths)
+
+    generated_paths_recursive = list(current_game.DFS_path_recursive_approach(current_graph,start,end))
+    print ('The path from start node to end node using the recursive approach is:',generated_paths_recursive)
+
+
     print ('Does a path from the given start node to the goal node?:', current_game.path_exist(generated_paths))
