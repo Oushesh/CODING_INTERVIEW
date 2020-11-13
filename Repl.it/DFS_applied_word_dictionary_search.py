@@ -100,7 +100,7 @@ class Word():
                 return output
         return None
 
-    def DFS_path(self,graph,start,goal):
+    def DFS_path_iterative(self,graph,start,goal):
         '''
         return of all possible paths
         Here we use a list of lists to represent the outptut
@@ -109,13 +109,13 @@ class Word():
         '''
         stack = [(start, [start])]
         while stack:
-            (vertex, path) = stack.pop()
-            for next in graph[vertex] - set(path):
+            (current_node, path) = stack.pop()
+            for neighbours in graph[current_node] - set(path):
                 #check if goal is reached
-                if next == goal:
-                    yield  path + [next] #build the path
+                if neighbours == goal:
+                    yield  path + [neighbours] #build the path
                 else:
-                    stack.append((next, path + [next]))
+                    stack.append((neighbours, path + [neighbours]))
         return None
 
     '''
@@ -144,7 +144,7 @@ if __name__ == "__main__":
     current_graph = current_game.build_graph(dictionary)
     print ('The adjacency graph from the dictionary words are as follows:',current_graph)
 
-    generated_paths = list(current_game.DFS_path(current_graph,start,end))
+    generated_paths = list(current_game.DFS_path_iterative(current_graph,start,end))
     print ('The path from start node to end node is as follows:',generated_paths)
 
     generated_paths_recursive = current_game.DFS_path_recursive_approach(current_graph,start,end)
