@@ -21,7 +21,6 @@ def dfs_iterative(graph,start):
     stack, path = [start], [] #we wrap the data into empty set to perform list operation of addition
     while stack:
         current_node = stack.pop()
-
         if current_node in path:
             continue
         path.append(current_node)

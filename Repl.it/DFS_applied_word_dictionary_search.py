@@ -147,7 +147,7 @@ if __name__ == "__main__":
     generated_paths = list(current_game.DFS_path(current_graph,start,end))
     print ('The path from start node to end node is as follows:',generated_paths)
 
-    generated_paths_recursive = list(current_game.DFS_path_recursive_approach(current_graph,start,end))
+    generated_paths_recursive = current_game.DFS_path_recursive_approach(current_graph,start,end)
     print ('The path from start node to end node using the recursive approach is:',generated_paths_recursive)
 
 
