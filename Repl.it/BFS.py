@@ -19,7 +19,6 @@ specially if you always remove the last or first element (pop_left,pop) vs
 lists of O(n) time complexity
 '''
 
-
 import collections
 from collections import dequeue
 
@@ -41,7 +40,6 @@ def BFS(graph, root):
                 #for set we use add, for list we use append
                 visited.add(neighbour)
                 queue.append(neighbour)
-
 
 if __name__ == "__main__":
     graph = {0:[1,2], 1:[2],2:[3],3:[1,2]}
