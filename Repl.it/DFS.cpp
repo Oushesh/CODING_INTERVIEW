@@ -4,7 +4,6 @@
 #include <iostream>
 #include <list>
 
-
 /*
 1. Build the graph
 2. Build the adjacency Matrix in .cpp -> Different from python

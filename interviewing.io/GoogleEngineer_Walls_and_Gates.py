@@ -185,18 +185,34 @@ class WallAndGates_BFSElegant():
         #check first if room exist
         row = len(rooms)
         col = len(rooms[0])
-
-        if not row or not col:
-            break
-
-        for i in range(row):
-            for j in range(col):
+        graph_room = self.room2graph(rooms)
+        return rooms
 
 
-    def BFS(self,graph):
+    def BFS_rooms(self,graph,rooms):
         '''
+        Expected Entry Data Structure:
+        graph = {0:set([1,2]), 1:set([2]),2:set([3]),3:set([1,2])}
         Graph traversal of BFS here
+        then pass the output to the other
+        ones, here.
+
+        small modifications: distance and condition
         '''
+        visited = set()
+        queue = deque([root])
+        visit.add(root)
+        distance = 0
+
+        while queue:
+            #deque vertex from Queue
+            current_node = queue.popleft()
+            if current_node == 0:
+                for neighbour in graph[current_node]:
+                    if neighbour not in visited:
+                        visited.add(neighbour)
+                        rooms
+                        queue.append(neighbour)
         return visited
 
 
@@ -215,3 +231,5 @@ if __name__ == '__main__':
 
     current_space_BFS = WallsAndGates_BFS()
     print ('The resulting cost space using BFS is the following:',current_space_BFS.wallsAndGates(space))
+
+    print ('The ')
