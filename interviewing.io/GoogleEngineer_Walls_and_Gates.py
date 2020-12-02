@@ -46,7 +46,6 @@ time to reposition all elements after removal of the
 first.
 '''
 
-
 import collections
 from collections import deque
 
