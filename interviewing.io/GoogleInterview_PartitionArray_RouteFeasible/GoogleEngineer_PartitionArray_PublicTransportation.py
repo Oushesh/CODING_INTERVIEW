@@ -174,29 +174,7 @@ if __name__ == "__main__":
     '''
      1->2->3->4->8->9
     '''
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 '''
 Question 3:
 Transportation System:
