@@ -24,7 +24,7 @@ class BoyerMoore():
     #main function: search function described below
     def smallest_shift(self,pattern,text,i,j):
          if pattern[]==text[]:
-
+             return None
         return shift
 
     #Case 3 No match
@@ -37,12 +37,12 @@ class BoyerMoore():
             mismatch = True
         return mismatch
 
-    def
+
     def good_suffix(self,pattern,text):
         if :
-            shift =
+            shift = None
         elif:
-            shift =
+            shift = None
         elif self.no_pattern[0]:
             shift = len(pattern)
         return table
@@ -56,8 +56,7 @@ class BoyerMoore():
         for i in range(n,m):
             while (j>=0 and j<=n):
                  #Call all 3
-
-
+                 return None
         return None
 
 if __name__ == "__main__":

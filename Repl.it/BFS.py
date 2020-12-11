@@ -20,7 +20,7 @@ lists of O(n) time complexity
 '''
 
 import collections
-from collections import dequeue
+from collections import deque
 
 #DFS Algorithm
 def BFS(graph, root):
