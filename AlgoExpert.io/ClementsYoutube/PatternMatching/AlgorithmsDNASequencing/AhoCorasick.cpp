@@ -1,8 +1,9 @@
 //
 // Created by Oushesh on 11/12/2020.
+//Test
 //
 
-
+#include <vector>
 #include <iostream>
 #include <queue>
 #define MAXS 500    //sum of the length of all patterns
@@ -81,25 +82,38 @@ int getNextState(int presentState, char nextChar) {
    return gotoMat[answer][ch];
 }
 
-void patternSearch(string arr[], int size, string text) {
+vector <int> patternSearch(string arr[], int size, string text)
+{
    buildTree(arr, size);    //make the trie structure
    int presentState = 0;    //make current state as 0
-
+   vector <int> locations;
    for (int i = 0; i < text.size(); i++) {    //find all occurances of pattern
       presentState = getNextState(presentState, text[i]);
       if (output[presentState] == 0)    //if no match continue;
       for (int j = 0; j < size; ++j) {   //matching found and print words
          if (output[presentState] & (1 << j)) {
             cout << "Word " << arr[j] << " location: " << i - arr[j].size() + 1 << endl;
+            locations.push_back(i - arr[j].size() + 1);
          }
       }
    }
+   return locations;
 }
 
 int main() {
    string arr[] = {"their", "there", "answer", "any", "bye"};
    string text = "isthereanyanswerokgoodbye";
    int k = sizeof(arr)/sizeof(arr[0]);
-   patternSearch(arr, k, text);
+   vector <int> wordlocations;
+   wordlocations = patternSearch(arr, k, text);
+   //loop over the locations and print
+   for (int i=0;i<wordlocations.size();i++)
+   {
+     cout << "Location is:" << wordlocations[i] << "\n" << endl;
+   }
+   std::vector<int> v { 1,2,3,4};
+    for(auto const& value: make_ReverseRange(v)) {
+        std::cout << value << "\n";
+      }
    return 0;
 }
