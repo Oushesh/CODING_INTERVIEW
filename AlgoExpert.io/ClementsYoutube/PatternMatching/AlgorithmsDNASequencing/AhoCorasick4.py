@@ -8,7 +8,6 @@ Aho-Corasick Algorithm Implementation
 from collections import deque
 
 def buildTree(arr, size,MAXS, MAXC,gotoMat,fail,output,state):
-
     #Make trie structure for all pattern in array
     for i in range(size):
         word = arr[i]
@@ -21,10 +20,7 @@ def buildTree(arr, size,MAXS, MAXC,gotoMat,fail,output,state):
 
         #if the asci version of the character is not present:
         #ch is not present: make new node
-        print ('word[j]',word[j])
-        print ('ch',ch)
-        print ('presentState',presentState)
-        print ('gotoMat',len(gotoMat[0]))
+
         if (gotoMat[presentState][ch]==-1):
             state+=1 #update state
             gotoMat[presentState][ch] = state
@@ -39,9 +35,11 @@ def buildTree(arr, size,MAXS, MAXC,gotoMat,fail,output,state):
         if gotoMat[0][ch]==-1:
             gotoMat[0][ch]  = 0
 
+            #deque declaration here
+            q = deque([])
     #Just add the modified BFS code here:
     #Call the BFS traversal here:
-    state = BFS_traversal(MAXC,gotoMat,fail,output)
+    state = BFS_traversal(q,MAXC,gotoMat,fail,output)
     return state
 
 # modified BFS_traversal function to accomodate the functionalities
@@ -51,9 +49,7 @@ def buildTree(arr, size,MAXS, MAXC,gotoMat,fail,output,state):
 #because the deque has been optimized to do popleft()
 #approximately in O(1), while list.pop(0) takes O(n) (see deque objects).
 
-def BFS_traversal(MAXC,gotoMat,fail,output):
-    q = deque([])
-
+def BFS_traversal(q,MAXC,gotoMat,fail,output):
     #Node goes to previous state when it fails
     for ch in range(MAXC):
         if not gotoMat[0][ch]:
@@ -65,6 +61,8 @@ def BFS_traversal(MAXC,gotoMat,fail,output):
         #remove front node
         state = q[0]
         q.popleft()
+
+        #print ('q after popping', q)
 
         for ch in range(MAXC):
             #if goto state is present

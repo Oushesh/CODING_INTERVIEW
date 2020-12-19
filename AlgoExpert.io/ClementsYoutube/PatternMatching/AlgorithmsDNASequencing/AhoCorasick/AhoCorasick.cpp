@@ -106,11 +106,14 @@ int main()
    string text = "isthereanyanswerokgoodbye";
    int k = sizeof(arr)/sizeof(arr[0]);
    vector <int> wordlocations;
+   cout << "k" << k << endl;
    wordlocations = patternSearch(arr, k, text);
    //loop over the locations and print
-   for (int i=0;i<wordlocations.size();i++)
    {
-     cout << "Location is:" << wordlocations[i] << "\n" << endl;
-   }
+        for (int i = 0; i < wordlocations.size(); i++)
+        {
+            cout << "Location is:" << wordlocations[i] << "\n" << endl;
+        }
+    }
    return 0;
 }

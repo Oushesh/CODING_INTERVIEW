@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Oushesh/Documents/WORKSPACE/CODING_INTERVIEW/AlgoExpert.io/ClementsYoutube/PatternMatching/AlgorithmsDNASequencing/AhoCorasick/AhoCorasick.cpp
+vector
+-
+iostream
+-
+queue
+-
+
