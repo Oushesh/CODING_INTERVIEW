@@ -89,7 +89,6 @@ class Game():
         check the connectivity and update its visit attribute
         in the graph given.
         '''
-
         neighbours = self.neighbours(node[0],node[1],visited,playground)
         #Call the function to initialise visited map
         visited = self.visited(playground)
@@ -102,25 +101,33 @@ class Game():
                 if playground[neighbour[0]][neighbour[1]]==-1:
                     #We canot take we can only put
                     #continue putting blocks and always make sure block number >0
-                    while (playground[node[0]][node[1]]) and block>0:
-                    output.append('p')
+                    while (playground[node[0]][node[1]]-playground[neighbour[0]][neighbour[1]]) and block>0:
+                        output.append('p')
 
-                #
+                #now we have a different part of the code to decide between 'p' & 't'
+                #Cost Function:
+                #We pass in the node then:
+                while (playground)
+                max(block_p,block_t)
 
 
         return True, output
 
     '''
-    DFS traversal for the algorithm.
+    DFS traversal for the algorithm. Also walk the
     '''
     def dfs(self,graph,start,visited=None):
         if visited is None:
             visited = set() #
+        visited.add(start)
+
+        for neighbours in graph[start]-visited:
+            self.dfs(graph,neeighbours,visited)
         return visited
 
     def build_tree(self,playground,start,block):
         '''
-        graph={(x,y):[(x_child,y_child),block, parent_value,its value, visited or not]}
+        graph={(x,y):[(x_child,y_child),parent_value,block, its value, visited or not]}
         Loop over the playground, check the connectivity.
         If true add the (x,y) as the
         Perform the dummy initialisation here.
@@ -129,15 +136,13 @@ class Game():
         #start(x,y)
         playground
         visited_map = self.visited(playground)
-        grpah = {start:[None, block, None,playground[x][y]],visited_map[(x,y)]}
+        grpah = {start:[None, None,block, playground[x][y]],visited_map[(x,y)]}
 
         '''
-        Loop over every node (x,y), get their neighbours. if sel
+        Loop over every node (x,y), get their neighbours. if connectivity
+        returns True, then
         '''
         if self.connectivity():
-
-
-
 
         return tree
 
@@ -157,7 +162,7 @@ class Game():
         return True
 if __name__ == "__main__":
     #Game contains any number from -1 to 10
-    blocks = 10
+    block = 10
     height  = 6
     '''
     Instructions contain: r: right (clockwise rot), l:left (anticlockwise rot),s: step,
