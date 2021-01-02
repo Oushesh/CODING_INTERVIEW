@@ -10,7 +10,7 @@ Reference for the link: https://interviewing.io/recordings/Java-Google-1/
 First Approach: sort the list of length n -> log(n)
                 then query n-1 element in list. assuming we
                 len(list) > n
-O(n)log(n)
+O(n)log(n) --> if you sort in python
 '''
 
 class Solution():
