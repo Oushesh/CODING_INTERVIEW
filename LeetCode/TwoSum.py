@@ -23,7 +23,7 @@ class Solution:
 class Solution_Hash:
     def twoSumHash(self,nums,target):
         Hash = {}
-        for i in (nums):
+        for i in nums:
             if (target-i) not in Hash:
                 Hash[i]  = target-i
             return [i,Hash[i]]

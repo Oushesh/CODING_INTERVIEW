@@ -1,18 +1,13 @@
 #Reference: https://www.youtube.com/watch?v=psQ2lpH2hMQ
 #https://www.youtube.com/watch?v=psQ2lpH2hMQ
 
-#TODO: Complete this interview. its one of the easiest here.
-
-
+#TODO: Complete this interview. its one of the easiest here, 
 
 '''
-
-1. Reverse 32 bit signed integer. Then reverse it. -->
-
+1. Reverse 32 bit signed integer. Then reverse it.
 123 --> 321
 -123 --> -321
 #https://www.youtube.com/watch?v=NXaVLXSZdEw Three Sum
-
 
 #This is super easy. Lets think about what if we would have:
 #Two Sum then afterwards the Three Sum. Two Sum: Complement[number] --> the remaining
@@ -37,5 +32,5 @@ Example: [-1,0,1,2,-1,-4]
    to the same one then we have it.
 
    We extend this approach to three sum:
-   if the complement
+   if the complement.
 '''
