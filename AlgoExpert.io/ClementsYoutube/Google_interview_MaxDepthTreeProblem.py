@@ -14,6 +14,7 @@ Prompt:
   /  \
   8   9
 
+
  Depth of node: Depth here is 3.
  First: Write me a code that takes in the Binary Tree and count the number of node.
  How do you represent the tree? --> Let's say as a tree as a list of nodes.
@@ -21,7 +22,6 @@ Prompt:
 
  Go deeper and deeper until you have no children
 '''
-
 
 '''
 Focus on the algorithm.
@@ -66,5 +66,9 @@ if __name__ == "__main__":
     root.right.right = Node(7)
     root.left.left.left = Node(8)
     root.left.left.right = Node(9)
+
+
+
+    ###Different tree here:
 
     print ('The max depth is:%d'%(root.max_depth(root)))

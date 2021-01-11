@@ -1,7 +1,7 @@
 #Reference: https://www.youtube.com/watch?v=psQ2lpH2hMQ
 #https://www.youtube.com/watch?v=psQ2lpH2hMQ
 
-#TODO: Complete this interview. its one of the easiest here, 
+#TODO: Complete this interview. its one of the easiest here,
 
 '''
 1. Reverse 32 bit signed integer. Then reverse it.

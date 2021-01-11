@@ -17,11 +17,11 @@ Example: numbers = [1,2,3,4,5,6,7,8,9,10], target = 15,
          sum - target = 14-12 = 2, j=0, 14==4: False
      else: update j: j+=1, list[j]--> 5, target = 12
          shift+1, list is now: [5,2,3,7], sum_list = [5,7,10,17] update sum = 17, 17-12 = 5.
-         sum - target ==
-
+         sum - target == 14 -
 '''
 from functools import reduce
 
+#To reduce: skills:
 class PatternMatch:
     def search(self, list, target):
         sum = 0
@@ -40,8 +40,6 @@ class PatternMatch:
                 '''
                 while sum>target:
                     print ('sum',sum)
-                    print ('j',j)
-                    print ('i',i)
                     if (sum-target)==list[j]:
                         count +=1
                     else:
@@ -49,6 +47,8 @@ class PatternMatch:
                         #to right, move j
                         #update the sum list.
                         j+=1
+                        print (list[j])
+                        print (i,j)
                         sum = reduce(lambda x,y:y+x,list[j:i+1])
         return count
 
