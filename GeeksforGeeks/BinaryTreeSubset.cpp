@@ -50,7 +50,74 @@ In this case we do recursive win:
 
 using namespace std;
 
+//You can also use struct here. Does not matter.
 class TreeNode
 {
-  
+public:
+  int value;
+  TreeNode* left;
+  TreeNode* right;
+
+  //Constructor definition below
+  TreeNode(int value)
+  {
+    this->value = value;
+    //initially assign the left and right values to NULL
+    this->left = NULL;
+    this->right = NULL;
+  }
+};
+
+//This function returns if the 2 trees are similar.
+//iteratively going through root->left and root->right
+bool checkIdentical(TreeNode* S, TreeNode* T)
+{
+  //Edge Cases
+  //if both are null, then true.
+  //if one is null the other not, then they are not the same.
+  //so not.
+  if (S==NULL && T==NULL)
+    return true;
+
+  if (S==NULL || T==NULL)
+    return false;
+
+  //recursive call with TreeNode->left && TreeNode->right
+  //continue returning true as long as left of S and T as well right of S and T
+  return S->value==T->value && checkIdentical(S->left,T->left) && checkIdentical(S->right,T->right);
+}
+
+bool checkSubtree(TreeNode* S, TreeNode* T)
+{
+  if (S==NULL)
+    return false;
+  if (T==NULL)
+    return false;
+
+  if (checkIdentical(S,T))
+    return true;
+
+  //else I pass either the root as root->left or root->right against
+  //the T full subtree to tested by checkIdentical in the next function iteration
+  return checkSubtree(S-> left,T) || checkSubtree(S->right,T);
+}
+
+int main()
+{
+  TreeNode* S = new TreeNode(26);
+  S->left = new TreeNode(10);
+  S->right = new TreeNode(3);
+  S->left->left = new TreeNode(4);
+  S->left->right = new TreeNode(6);
+  S->right->right = new TreeNode(3);
+  S->left->left->left = new TreeNode(30);
+
+  TreeNode* T = new TreeNode(10);
+  T->left = new TreeNode(4);
+  T->right = new TreeNode(6);
+  T->left->left = new TreeNode(30);
+
+  cout  <<  "T is a subtree?" << checkSubtree(S,T) << endl;
+  cout << "ABCD" << endl;
+  return 0;
 }
