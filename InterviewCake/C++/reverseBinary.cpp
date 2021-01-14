@@ -33,9 +33,12 @@ recursively call the function with root->left, root->right
 10          60     85  100
 
 */
+#include <iostream>
+using namespace std;
 
 class BinaryTree
 {
+public:
   int value;
   BinaryTree* left;
   BinaryTree* right;
@@ -68,6 +71,15 @@ void reverseTree(BinaryTree* root)
     reverseTree(root->right);
 }
 
+//Traverse the tree and print all the elements
+void printTree(BinaryTree * node)
+{
+  if (node == NULL)
+    return;
+  cout << node->value <<" ";
+  printTree(node->left);
+  printTree(node->right);
+}
 
 int main()
 {
@@ -88,7 +100,10 @@ int main()
 
   //Here we do the inorder traversal of the BInarytree to print
   //out the reversed elements
+  reverseTree(root);
+  printTree(root);
 
+  //Call the function to print here:
   cout << "The reversed BinaryTree is:" << endl;
   return 0;
 }

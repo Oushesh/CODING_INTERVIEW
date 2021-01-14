@@ -68,7 +68,6 @@ bool isBinary(BinaryTree* root)
     return true;
 }
 
-
 int main()
 {
   //Build the tree here:
