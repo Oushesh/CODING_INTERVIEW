@@ -48,4 +48,48 @@ We know user always starts first: U-User, O-opponent
 
 In the end the solution is just: max(sum(oppponent),sum(user))
 Then we have it. Lets code!!!
+
+This is linear!!
 '''
+
+#One easy version. If both players are definitely not stupid --> every decision that you take is definite. Its linesr
+import collections
+from collections import deque
+
+class CoinGame:
+    def __init__(self,coins):
+        self.coins = coins
+        self.turn = None   #self.turn can take 2 variables: 'U' for user and 'o' for opponent
+        self.user = []
+        self.opponent = []
+        self.current = None
+
+    def count(self,coins):
+        self.turn = 'u'
+        #convert coins to deque in Python for more computational efficieny.
+        #List: pop(index)--> O(n) complexity, popleft or popright of deque has O(1) time complexity
+        #We will only take the leftest or rightest.
+        coins = deque(coins)
+        while len(coins)>0:
+            if coins[0] > coins[-1]:
+                self.current = coins.popleft()
+            else:
+                self.current = coins.pop()  #pop means popright()
+
+            if self.turn =='u':
+                self.user.append(self.current)
+                self.turn = 'o'
+            elif self.turn == 'o':
+                self.opponent.append(self.current)
+                self.turn = 'u'
+        print (self.user, self.opponent)
+        return max(sum(self.user),sum(self.opponent))
+
+if __name__ == "__main__":
+    coins = [8,15,3,7] #input coins, 2 players: user, opponent.
+
+    currentGame = CoinGame(coins)
+    print (currentGame)
+    print ('The max count of the number of coins is:',currentGame.count(coins))
+
+#Case 2: One or both players can be stupid. --> much more complicated. preprocess using a 2D Array
