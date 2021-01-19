@@ -28,22 +28,33 @@ traverse(BinaryTree* Node)
   if node->left
    traverseL(NOde->left)
 
+
    if node->right
    traverseR(Node-right)
   if node->rightt
     traverse(Node->right)
 
-
-
-Take care of right-left, left->right ??? How???
+Take care of right-left, left->right ??? How??? -->
 
 traverseL(Node)
- return (Node->left)
+if left
+  return (Node->left)
+if right
+  return traverseC(root->right)
+
+left-right
+right-> left
+traverseC(Node)
+  if (!root->left && !root-right)
+    cout << root->vluae << endl; This is the point where we reached the leaf node.
+  else
+    traverseL(root->left)
+    traverseR(root->right)
+
+
+#Rewrite this in python: again
 */
-
-
 #include <iostream>
-
 using namespace std;
 
 class BinaryTree
@@ -56,17 +67,75 @@ public:
   //Build a function to build the tree
   BinaryTree(int value)
   {
-    BinaryTree->value = value;
-    BinaryTree->left = NULL;
-    BinaryTree->right = NULL;
+    this->value = value;
+    this->left = NULL;
+    this->right = NULL;
   }
 };
 
+void traverseC(BinaryTree* root)
+{
+  if (!root->left && !root->right) //bottom reached
+    cout << root->value << " ";
+  else
+  {
+    if (root->left) traverseC(root->left);
+    if (root->right) traverseC(root->right);
+  }
+}
+void traverseL(BinaryTree* root)
+{
+  cout << root->value << " ";
+  if (root->left)
+    traverseL(root->left); //still in outer left
+  if (root->right)
+    traverseC(root->right);
+}
 
+void traverseR(BinaryTree* root)
+{
+  if (root->left)
+    traverseC(root->left);
+  if (root->right)
+    traverseR(root->right); //still in outer right
+  cout << root->value<< " ";
+}
 
+void traverse(BinaryTree* root)
+{
+  if (!root)
+    return;
+  cout << root->value << " ";
+  if (root->left)
+    traverseL(root->left); //special function for outer left
+  if (root->right)
+    traverseR(root->right); //special function for outer right
+}
 
 int main()
 {
   //Instantiate the BinaryTree here
+  /*
+      1
+    /     \
+    2      3
+    / \    / \
+    4  5  6   7
+       \   \   \
+       8   9   10
+  */
+
+  BinaryTree* root = new BinaryTree(1);
+  root->left = new BinaryTree(2);
+  root->right = new BinaryTree(3);
+  root->left->left = new BinaryTree(4);
+  root->left->right = new BinaryTree(5);
+  root->right->left = new BinaryTree(6);
+  root->right->right = new BinaryTree(7);
+  root->left->right->left = new BinaryTree(8);
+  root->right->left->left = new BinaryTree(9);
+  root->right->right->left = new BinaryTree(10);
+
+  traverse(root);
   return 0;
 }
