@@ -88,4 +88,4 @@ if __name__ == "__main__":
     current_palindrome.check_string(string)
 
 
-#TODO: Todebug and to check the code subtulties
+#TODO: Done

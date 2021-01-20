@@ -63,7 +63,7 @@ class CoinGame:
         self.user = []
         self.opponent = []
         self.current = None
-
+    
     def count(self,coins):
         self.turn = 'u'
         #convert coins to deque in Python for more computational efficieny.
@@ -85,6 +85,10 @@ class CoinGame:
         print (self.user, self.opponent)
         return max(sum(self.user),sum(self.opponent))
 
+
+    '''
+    This one is in a new case when the user:
+    '''
 if __name__ == "__main__":
     coins = [8,15,3,7] #input coins, 2 players: user, opponent.
 
