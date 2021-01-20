@@ -50,6 +50,14 @@ In the end the solution is just: max(sum(oppponent),sum(user))
 Then we have it. Lets code!!!
 
 This is linear!!
+
+Case 2: In Case the user or
+
+This one is in a new case when the user or opponent is not necessarily intelligent,
+--> implies user or opponent may or may not take the max out of the current left most or right most element.
+
+We build a tree for each possibility like a tree, then traverse the tree to go sum
+all nodes from the same path.
 '''
 
 #One easy version. If both players are definitely not stupid --> every decision that you take is definite. Its linesr
@@ -63,7 +71,7 @@ class CoinGame:
         self.user = []
         self.opponent = []
         self.current = None
-    
+
     def count(self,coins):
         self.turn = 'u'
         #convert coins to deque in Python for more computational efficieny.
@@ -82,18 +90,56 @@ class CoinGame:
             elif self.turn == 'o':
                 self.opponent.append(self.current)
                 self.turn = 'u'
-        print (self.user, self.opponent)
+
         return max(sum(self.user),sum(self.opponent))
 
 
-    '''
-    This one is in a new case when the user:
-    '''
+        '''
+        How we want the output to look like
+        len(combinations) = len(coins)*2
+        len(combinations) = len(combinations)/2
+
+       [0    1  3   4]
+        8   15  3   7
+        U    O  U   O
+        U    O  O   U
+        U    u  o   O
+        U    o  u   O
+        O    u  o   U
+        O    0  U   U
+        U    o  O   U
+        o    U  O   U
+        '''
+
+     #IN Case the user or gamer is not intelligent
+     def preprocess(self,coins):
+         self.turn = 'u'
+         combinations = len(coins)*2 #2players thats why.
+         grid = [0 for i in range(len(oins))] for j in range in combinations]
+         repeat = int(0.5*len(combinations)) #4
+
+        indices = deque([i for i in range(len(coins))])
+
+        while (indices):
+            front = indices.popleft() #0
+            back  = indices.pop() #3
+            while (repeat>=1):
+                grid[front][front]
+
+         return grid
+
+
+    def max_path_counter():
+            return max
+
+
+
+
 if __name__ == "__main__":
     coins = [8,15,3,7] #input coins, 2 players: user, opponent.
 
     currentGame = CoinGame(coins)
-    print (currentGame)
+
     print ('The max count of the number of coins is:',currentGame.count(coins))
 
 #Case 2: One or both players can be stupid. --> much more complicated. preprocess using a 2D Array

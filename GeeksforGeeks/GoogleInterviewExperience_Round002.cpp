@@ -4,18 +4,21 @@ The same code as written in python. we write in .cpp
 
 #include <iostream>
 #include <vector>
-#include <arithmetic>
+
 #include <deque>
 
 using namespace std;
 
 class CoinGame
 {
-
+public:
   deque <int> coins;
+  char turn;
+  deque <int> user;
+  deque <int> opponent;
+  int current;
 
   //Constructor
-public:
   CoinGame(deque <int> coins)
   {
     this->coins = coins;
@@ -26,11 +29,11 @@ public:
   }
 };
 
-bool comparator(int a,int b)
+bool comparator(int a, int b)
 {
   return (a<b);
 }
-int count(deque <int> &coins)
+int count(CoinGame Game)
 {
   CoinGame Game;
   Game.turn = "u";
@@ -47,7 +50,7 @@ int count(deque <int> &coins)
       Game.user.push_back(Game.current);
       Game.turn = "o";
     }
-    else if (Game.turn == "0")
+    else if (Game.turn == "o")
     {
       Game.opponent.push_back(Game.current);
       Game.turn = "u";
@@ -55,14 +58,13 @@ int count(deque <int> &coins)
 
     return max(accumulate(self.user.begin(),self.user.end(),0.0),accumulate(self.opponent.begin(),self.opponent.end(),0.0))
   }
-
-  max();
 }
 
 int main()
 {
-  vector <int> = {8,15,3,7};
-  CoinGame game 
+  vector <int> coins = {8,15,3,7};
+  CoinGame game;
+  cout << "The max count of the number of coins is:" << count(coins) << endl;
   return 0;
 }
 
