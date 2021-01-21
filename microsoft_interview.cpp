@@ -76,12 +76,12 @@ int main()
   int K=2;
   vector <int> anchor  = {2,3};
   vector <vector<int>> points = {{1,5},{1,2},{-1,1}};
-  
+  vector <vector <int>> K_closest = closest(points, anchor);
   //So to compute 2 closest points from points to vertex and print it out here.
-  for (auto num: nums)
+  for (auto num: K_closest)
   {
-    
-
-
+    cout << "x: " << num[0];
+    cout << "y: " << num[1];
   }
+  return 0;
 }
