@@ -22,7 +22,7 @@ Loop --> distance(vertex, points[i])--> append distance --> closest--> append it
 int distance(vertex <int> &anchor, vertex<int> &point)
 {
   int dist;
-  dist = sqrt(abs(anchor[0]-point[0])**2abs(anchor[1]-point[1])**2); 
+  dist = sqrt(abs(anchor[0]-point[0])**2+abs(anchor[1]-point[1])**2); 
   return dist;
 }
 
