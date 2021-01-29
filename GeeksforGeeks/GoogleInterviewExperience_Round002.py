@@ -9,7 +9,6 @@ moves were limited to a number t.
 '''
 How do we solve this?
 
-
 For this its easy: Lets solve it via dynamic programming:
 
 lets save the possibilities with a 2D array:
@@ -57,7 +56,7 @@ This one is in a new case when the user or opponent is not necessarily intellige
 --> implies user or opponent may or may not take the max out of the current left most or right most element.
 
 We build a tree for each possibility like a tree, then traverse the tree to go sum
-all nodes from the same path.
+all nodes from the same path. --> Draw the tree here
 '''
 
 #One easy version. If both players are definitely not stupid --> every decision that you take is definite. Its linesr
@@ -111,29 +110,52 @@ class CoinGame:
         o    U  O   U
         '''
 
-     #IN Case the user or gamer is not intelligent
-     def preprocess(self,coins):
-         self.turn = 'u'
-         combinations = len(coins)*2 #2players thats why.
-         grid = [0 for i in range(len(oins))] for j in range in combinations]
-         repeat = int(0.5*len(combinations)) #4
+    '''
+    Updated: 26.01.2021
+    '''
+     #In Case the user or gamer is not intelligent, which means we have
+     #more conditions. The system is probabilistic & not definite.
+     #We thus build the above the preprocessing table to account for
+     #all the possible paths of the system.
+     #3. Keep track of sum of all possible paths & max of those sums
 
-        indices = deque([i for i in range(len(coins))])
 
+    #Actually each row represents a
+    #Path is sum along the row.
+    #Each path is unique.
+    #max(sum(path))
+    def preprocess(self,coins):
+         self.turn = 'u'  #the first turn for the user is always 'u', then sequential alternative: 'u' and 'o'
+         combinations = len(coins)*2  #2players thats why.
+         grid = [0 for i in range(len(coins))] for j in range in combinations]
+
+         print ('grid initialised:',grid)
+
+         repeat = len(combinations)//2 #integer output #4
+         indices = deque([i for i in range(len(coins))]) #the reason why we use deque is because we efficiently pop left and pop right with a time complexity O(1)
+
+
+        #Pop both sides until indices does not exist.
+        #We exhaused all moves
         while (indices):
             front = indices.popleft() #0
             back  = indices.pop() #3
             while (repeat>=1):
-                grid[front][front]
+                #Here repeat is 4.
+                for i in range(repeat):
+                    grid[i][front]= 'u' #(0,0), (0,1), (0,2), (0,3)
+                    grid[]
+                repeat//=2
 
          return grid
 
 
-    def max_path_counter():
+    def max_paths(self,grid):
+
             return max
 
 
-
+###TODO: write a readme
 
 if __name__ == "__main__":
     coins = [8,15,3,7] #input coins, 2 players: user, opponent.
@@ -142,4 +164,4 @@ if __name__ == "__main__":
 
     print ('The max count of the number of coins is:',currentGame.count(coins))
 
-#Case 2: One or both players can be stupid. --> much more complicated. preprocess using a 2D Array
+    #Case 2: One or both players can be stupid. --> much more complicated. preprocess using a 2D Array
