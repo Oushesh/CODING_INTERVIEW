@@ -43,9 +43,18 @@ class Inequality():
                 condition[0],condition[2]=condition[2],condition[0] #swap them
         return conditions
 
-    def contradiction(self,conditions):
-            #return True
-        return False
+    #if there is a contradiction; then we immediately return false in main
+    def contradiction(self,standardised):
+            #Input: standardised conditions, add tuples (a,b)
+            #We use set to decrease computational complexity
+            visited = set()
+            for con in standardised:
+                if (con[0],con[2])  in visited or (con[2],con[0]) in visited:
+                    #We have visited it, check if the sign is opposite
+                else:
+                    visited.add((con[0],con[2]))
+                    return True
+            return False
 
     def con_len(self,var,conditions):
         '''
@@ -78,24 +87,29 @@ class Inequality():
         sorted_freq=sorted(freq.items(),key=lambda items:items[1])
         return sorted_freq
 
-    def main_check(self,var,conditions):
-        #1-Standardise the conditions.
-        #2-Check length of conditions after standardisation, if less, ignore. Conditions incomplete
-        #3-Check condradiction.
-        #4-perform alignment
+    def main(self,var,conditions):
+        #1- Standardise the conditions.
+        #2- Check length of conditions after standardisation, if less, ignore. Conditions incomplete
+        #3- Check condradiction.
+        #4-
         standardised_conditions = self.standardise(conditions)
+        unchecked = set()
+        checked   = set()
         if not self.con_len(var,standardise_conditions) and not self.contradiction(standardised_conditions):
-            '''
-            Perform checking whether we find a unique order of element
-            Find the variable with least conditions from the sorted freq counter.
-            '''
             sorted_freq = self.var_freq(conditions)
-
-
-
-
-
-
+            #The first one is the one which appears the least amount of time:
+            for key,value in sorted_freq.items():
+                #search in the standardised condition
+                while standardised_conditions:
+                    for condition in standardised_conditions:
+                        if key == standardised_conditions[0] or key== standardised_conditions[2]:
+                            if key not in checked:
+                                checked.add((key,value))
+                                standardised_conditions.remove(condition)
+                                continue
+                    return True
+        else:
+            return False
 
 if __name__ == "__main__":
     '''
