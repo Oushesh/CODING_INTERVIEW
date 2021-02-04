@@ -3,10 +3,7 @@
 '''
 Google Interview Experience | On-Site for SDE
 Difficulty Level: Hard
-'''
 
-
-'''
 Round 1: There are several equations given in terms of 2 variables
 with a '<' or '>' sign between them. Ex-a>b, b>c etc...
 You have to answer whether there is a sequence which of the
@@ -22,11 +19,9 @@ a>b, b>c, c>d, e<c, f>g,
 1. The ones which do not have condition we leave it.
 2. Focus on those which do not have condition.
 
-
 Simpler problem:
 Global order, i<i+1<i+2<i+3<.....n
 min = '-inf'
-
 
 10,5,6,7,8,9,1,3
 i= 0
@@ -35,16 +30,8 @@ i= 0
 3. 9>3, swap(9,3)-> 1,3,9, max = 9
 4. O(n)
 
-
-Likewise, we use but instead here we query the condition from a list.
-And we solve in O(n)
 '''
-
-
-#TODO: Being done now
-
-
-class Inequality:
+class Inequality():
     def standardise(self,conditions):
         '''
         We define standardisation as the
@@ -76,6 +63,7 @@ class Inequality:
         The frequency counter is just a dictionary.
         '''
         freq = {}
+        sorted_freq = {}
         for var in conditions:
             if var[0] not in freq:
                 freq[var[0]]=1
@@ -86,13 +74,13 @@ class Inequality:
             else:
                 freq[var[2]]+=1 #update the count
 
-        #Sort the frequency counter
-
-        return freq
+        #Sort the dictionary
+        sorted_freq=sorted(freq.items(),key=lambda items:items[1])
+        return sorted_freq
 
     def main_check(self,var,conditions):
         #1-Standardise the conditions.
-        #2-Check length of conditions after standardisation, if less ()
+        #2-Check length of conditions after standardisation, if less, ignore. Conditions incomplete
         #3-Check condradiction.
         #4-perform alignment
         standardised_conditions = self.standardise(conditions)
@@ -101,6 +89,8 @@ class Inequality:
             Perform checking whether we find a unique order of element
             Find the variable with least conditions from the sorted freq counter.
             '''
+            sorted_freq = self.var_freq(conditions)
+
 
 
 
@@ -137,8 +127,4 @@ if __name__ == "__main__":
 
     ineq = Inequality()
     print ('The standardised conditions is:',ineq.)
-
     print ('The number of conditions given are insufficient to derive the overall inequality:',ineq.check_con_)
-
-
-#####TODO: 1. Return sorted_freq_counter, update the connter and sort the rest
