@@ -43,7 +43,6 @@ overlapping. There is string overlpaing.
 
 '''
 
-
 class StringMatcher():
 	def __init__(self,bigString,smallString):
 		self.bigString = bigString
@@ -51,19 +50,33 @@ class StringMatcher():
 
 	def map_check(self,map):
 		#input has to be a valid map
-		#loop until
-		for key in map.keys:
-			 not map[key]==1:
-
-		return True
+		#True: if all the keys have value 1.
+		for key,value in map.items():
+			while value==1:
+				continue
+			return True
 
 	def PermutationsContainedInString(self):
+		count = 0
 		map = {i:0 for i in self.smallString} #initialise the map count to 0
-		for i in range(len(self.smallString),len(self.bigString)):
+		#initalised
+		idx = 0
+		while idx<len(self.smallString):
+			map[self.bigString[idx]]+=1
+
+		if self.map_check(map):
+			count+=1 #update the count here
+
+		#At this point: the map is already updated
+		for i in range(1,len(self.bigString)-len(self.smallString)):
 			#perform the check here
+			if self.map_check(map):
+				count+=1
+				#decrease the count here by 1.
+				map[self.bigString[i-1]]-=1 #remove the old counter
+				map[self.bigString[i]]+=1   #add the new counter here.
 
-
-
+		return count
 
 if __name__ == "__main__":
 	bigString = "cbabcacabca"
