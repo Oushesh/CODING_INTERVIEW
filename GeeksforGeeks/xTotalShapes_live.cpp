@@ -3,7 +3,6 @@
 #include <deque>
 using namespace std;
 
-
 void neighbour(vector<vector<char>> grid, int i, int j, int m, int n)
 {
     if (i>0 || j>0 || i<=m || j<=n || grid[i][j]=='X')

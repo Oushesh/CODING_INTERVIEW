@@ -8,7 +8,7 @@ Techincal Interview with a Microsoft engineer: K closest points
 List of points:
 List[List]: x,y
 np.float distance
-int k= 10: 10 closest points to the integer.
+int k = 10: 10 closest points to the integer.
 Point: vertex: (x,y)
 
 Edge Case: Assume that we have 10 points and if we have less

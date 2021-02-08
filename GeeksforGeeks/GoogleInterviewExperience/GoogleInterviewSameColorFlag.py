@@ -58,16 +58,47 @@ class DutchFlag():
                 #keep looping as long as the next one is the same
                 i+=1
 
+#TODO: Check all code in the google interview experience journey: This is the non predefined case.
 
+'''
+The other way to approach this is:
+Input: [0,1,2,2,2,0,0,0,1,1]
+Output: [0,0,0,0,1,1,1,2,2,2]
 
-#TODO: Check all code in the google interview experience journey.
+The way we do is using 2 pointers: low,medium, high
 
+AIM: Get all 0s on the left, all 2s to the right, 1s in between.
+swap(mid,high).
+'''
+class TriColorFlag():
+    def swap(self,a,b):
+        a,b = b,a
+        return a,b
 
+    def sortColors(self,flags):
+        '''
+        MOdify in-place instead
+        '''
+        low = 0
+        mid = 0
+        high = len(flags)-1
 
+        while (mid<=high):
+            if flags[mid]==0:
+                flags[low],flags[mid] = self.swap(flags[low],flags[mid])
+                low+=1
+                mid+=1
+            elif flags[mid]==2:
+                flags[mid], flags[high] = self.swap(flags[mid],flags[high])
+                high-=1
+            else:
+                #This is the case where there flags[]
+                mid+=1
 
-
-
+#TODO: also Leetcode 75. Sort Colors. https://leetcode.com/problems/sort-colors/discuss?currentPage=1&orderBy=hot&query=
 
 if __name__ == "__main__":
-    input_flag = [0,1,2,2,2,0,0,0,1,1]
-    print ('The resultant is')
+    flags = [0,1,2,2,2,0,0,0,1,1]
+    DutchFlag = TriColorFlag()
+    DutchFlag.sortColors(flags)
+    print ('The resultant array is',flags)

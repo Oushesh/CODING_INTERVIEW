@@ -1,6 +1,5 @@
 #Ref: LandandSea_v2.pdf
 #
-
 '''
 Simplicity is the ultimate sophistication.
 
