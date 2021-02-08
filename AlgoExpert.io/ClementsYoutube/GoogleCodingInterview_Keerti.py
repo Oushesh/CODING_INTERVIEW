@@ -84,3 +84,6 @@ if __name__ == "__main__":
 
 	current_problem = StringMatcher(bigString,smallString)
 	print ('The number of permutations is',current_problem.PermutationsContainedInString())
+
+
+#TODO: To check for edge cases for this code And to test it.
