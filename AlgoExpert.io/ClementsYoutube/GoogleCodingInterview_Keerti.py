@@ -42,7 +42,6 @@ overlapping. There is string overlpaing.
    	we continue.
 
 '''
-
 class StringMatcher():
 	def __init__(self,bigString,smallString):
 		self.bigString = bigString
