@@ -51,7 +51,7 @@ public:
 };
 int main()
 {
-	vector <char> string = {"a","n","n","a"};
+	vector <char> string = {'a','n','n','a'};
 	Words given_words;
 	for (auto palindrome: given_words.check(string))
 		cout <<"The palindromes from this string are: " << palindrome << endl;
