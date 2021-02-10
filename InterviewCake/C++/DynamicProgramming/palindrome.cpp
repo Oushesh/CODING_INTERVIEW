@@ -27,23 +27,38 @@ public:
 		}
 		return true;
 	}
+
+  //Special Function to slice 
+  vector  <char> slice(vector <char> string, int left, int right)
+  {
+    auto first = string.cbegin() + left;
+    auto last = string.cbegin() + right+1;
+    vector <char> subvec(first,last);
+    return subvec;
+  }
+
 	vector <char> check (vector <char> & string)
 	{
 
-		vector <char> output;
+		vector <vector <char>> output;
 		int left = 0;
 		int right = string.size();
-		while (right>left)
+    
+    //access subvector using 
+    //Ref: https://www.techiedelight.com/get-slice-sub-vector-from-vector-cpp/    
+    while (right>left)
 		{
-			if (true==palindrome(string[left:right])
+      //how to extract subarray from here:
+      
+			if (true==palindrome(slice(string,left,right)))
 			{
-				output.push_back(string[left:right]);
+				output.push_back(slice(string,left,right));
 				left+=1;
 				right-=1;
 			}
-			if (true !=palindrome(string[left:right]))
-				left+=1:
-			if (true!=palindrome(string[left:right]))
+			if (true !=palindrome(slice(string,left,right)))
+				left+=1;
+			if (true!=palindrome(slice(string,left,right)))
 				right-=1;
 		}
 		return output;
@@ -58,4 +73,4 @@ int main()
 	return 0;
 }
 
-// TODO: todebug and test
+// TODO: finish debugging this and test
