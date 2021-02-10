@@ -1,7 +1,7 @@
 /*
 Author: Oushesh
+palindrome check in CPP
 
-palindrome check in Cpp
 */
 #include <iostream>
 #include <map>
@@ -13,12 +13,13 @@ using namespace std;
 class Words
 {
 public:
-	//Constructor here
 	bool palindrome(vector <char> & string)
 	{
 		//This function checks whether a string is a plaindrome or not.
 		for (int i=0; i<string.size();i++)
 		{
+			//This part checks whether the string is
+			//palindrome or not.
 			if (string[i]!=string[string.size()-i])
 				return false;
 			else
@@ -26,9 +27,9 @@ public:
 		}
 		return true;
 	}
-
 	vector <char> check (vector <char> & string)
 	{
+
 		vector <char> output;
 		int left = 0;
 		int right = string.size();
