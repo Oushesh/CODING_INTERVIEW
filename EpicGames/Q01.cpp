@@ -11,6 +11,5 @@ example, they might be able to take the drop from the
  answer.
 '''
 
-
 // TODO:  https://gist.github.com/arrieta/b181bac40829a7f2460c03612b978944
 //          https://github.com/Mishco/Egg_problem/tree/master/egg-problem
