@@ -14,6 +14,18 @@ palindrome substring within the given big string.
 For example here: 'nn' is a palindrome, 'anna' is also a palindrome.
 (its continuous)
 
-What about this case? --> 'banna' , the only one  
+What about this case? --> 'banna'
+
+
+2 Approaches I can think of:
+
+1. 2 pointers (left, right).
+left = 0, right = len(string)
+while (left<=right):
+    check_palindrome(substring)
+    left+=1
+    if not check_palindrome:
+        right-=1
+        check_palindrome
 
 '''
