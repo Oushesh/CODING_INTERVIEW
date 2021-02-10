@@ -4,5 +4,4 @@
 
 ## Example Coding Interview Questions for Toptal:
   * https://www.toptal.com/algorithms/interview-questions
-    * https://www.youtube.com/watch?v=NTCRFASmSlA
-    * TO COMPLETE THE TOPTAL EXERCISE (as practice for coding interview)
+  * https://www.youtube.com/watch?v=NTCRFASmSlA
