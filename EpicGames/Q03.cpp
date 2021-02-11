@@ -8,3 +8,5 @@ where the returned value is allocated on behalf of the caller, value is
 the integer to convert, and base is octal, decimal, or hex.
 Your implementation is expected to be robust and production ready
 */
+
+//Ref: https://pastebin.com/3AezR328
