@@ -23,8 +23,9 @@
           * x(x+1)/2 = 120
               * x ~ 15
 
-        Ans: [15,15+14,15+14+13,...] = [15,29,42,54,65,75,84,92,99,105,110,114,117,119,120]
+        Ans: [15,15+14,15+14+13,...] =  [15,29,42,54,65,75,84,92,99,105,110,114,117,119,120]
 
 ## The different algorithimc style solution
   * Dynamic Programming --> Q01DynamicProgramming.cpp
+      * 
   * Optimised version of the Dynamic Proramming.

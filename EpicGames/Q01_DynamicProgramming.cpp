@@ -21,7 +21,8 @@ For 2 Xboxes --> Floor1 + max(0,DP[1][1])
 
 Space Complexity: Owing to building the table: O(Xbox*Floors), saving varialbes
                   amount to Order of 1 and in Big (O) Notation: O(Xbox*floors)
-Time Complexity:
+Time Complexity: (See below)
+
 */
 #include <limits.h>
 #include <iostream>
@@ -39,54 +40,46 @@ int max(int a, int b)
 number of trials needed in worst
 case with n eggs and k floors */
 
-//returns min. number of trials needed to fit in Formula x
+//returns min. number of trials needed to fit in Formula x/(x+1)/2 = 120
+//We build the 2D Table to save the preprocessing reults
+
 int XboxDrop(int n, int k)
 {
-    /* A 2D table where entery
-    eggFloor[i][j] will represent
-    minimum number of trials needed for
-    i eggs and j floors. */
     int XboxFloor[n + 1][k + 1];
     int res;
-    int xbox, j, x;
-
+    int xbox, floors, x;
 
     //initialising 1 trial for floor 1 and 0 trials for 0th floor
     for (xbox = 1; xbox <= n; xbox++) {
         XboxFloor[xbox][1] = 1;
         XboxFloor[xbox][0] = 0;
     }
+    //FOr j floors and 1 Xbox we need j floors
+    for (floors = 1; floors <= k; floors++)
+        XboxFloor[1][floors] = floors;
 
-    // We always need j trials for one egg
-    // and j floors.
-    for (j = 1; j <= k; j++)
-        XboxFloor[1][j] = j;
-
-    // Fill rest of the entries in table using
-    // optimal substructure property
+    //The rest is filled with the metod written above
     for (xbox = 2; xbox <= n; xbox++)
     {
-        for (j = 2; j <= k; j++)
+        for (floors = 2; floors <= k; floors++)
         {
-            XboxFloor[xbox][j] = INT_MAX;
-            for (x = 1; x <= j; x++)
+            XboxFloor[xbox][floors] = INT_MAX;
+            for (x = 1; x <= floors; x++)
             {
-                res = 1 + max(XboxFloor[xbox - 1][x - 1],XboxFloor[xbox][j - x]);
-                if (res < XboxFloor[xbox][j])
-                    XboxFloor[xbox][j] = res;
+                res = 1 + max(XboxFloor[xbox - 1][x - 1],XboxFloor[xbox][floors - x]);
+                if (res < XboxFloor[xbox][floors])
+                    XboxFloor[xbox][floors] = res;
             }
         }
     }
-
-    // eggFloor[n][k] holds the result
+    // XboxFloor[n][k] = ouput
     return XboxFloor[n][k];
 }
 
-/* Driver program to test to pront printDups*/
 int main()
 {
-    int xbox = 2;
-    int floors = 120;
-    cout <<  XboxDrop(xbox, floors) << endl;
+    int num_xbox = 2;
+    int num_floors = 120;
+    cout <<  XboxDrop(num_xbox, num_floors) << endl;
     return 0;
 }
