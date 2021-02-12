@@ -61,7 +61,6 @@ def egg_drop_recursive_memoized(floors, eggs):
           f"elapsed milliseconds...... {elapsed:.3f}",
           sep="\n", flush=True)
 
-
 def egg_drop_bottom_up_table(floors, eggs):
 
     tbeg = perf_counter()
