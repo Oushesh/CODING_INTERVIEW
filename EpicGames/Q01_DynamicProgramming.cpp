@@ -1,66 +1,92 @@
-// A Dynamic Programming based for
-// the Egg Dropping Puzzle
-#include <limits.h>
-#include <stdio.h>
+//Dynamic Approach to the problem:
 
-// A utility function to get
-// maximum of two integers
+/*
+The dynamic problem approach is used
+to make a lookup table and to avoid
+calculating the answers again and again.
+
+The use of the lookup talbe is as follows:
+
+xbox--> number of xboxes given
+floor--> number of floors.
+
+How to fill the talbe?
+For 1 Xbox --> the number of attempts= number of floors (120)
+For 2 Xboxes --> Floor1 + max(0,DP[1][1])
+                 Floor2 + max(DP[1][1],0)
+                 DP[2][2] = minimum(0,DP[1][1],1+max(DP[1][1],0))
+                 .
+                 .
+                 .
+
+Space Complexity: Owing to building the table: O(Xbox*Floors), saving varialbes
+                  amount to Order of 1 and in Big (O) Notation: O(Xbox*floors)
+Time Complexity:
+*/
+#include <limits.h>
+#include <iostream>
+using namespace std;
+
 int max(int a, int b)
 {
-    return (a > b) ? a : b;
+  if (a>b)
+    return a;
+  else
+    return b;
 }
 
 /* Function to get minimum
 number of trials needed in worst
 case with n eggs and k floors */
-int eggDrop(int n, int k)
+
+//returns min. number of trials needed to fit in Formula x
+int XboxDrop(int n, int k)
 {
     /* A 2D table where entery
     eggFloor[i][j] will represent
     minimum number of trials needed for
     i eggs and j floors. */
-    int eggFloor[n + 1][k + 1];
+    int XboxFloor[n + 1][k + 1];
     int res;
-    int i, j, x;
+    int xbox, j, x;
 
-    // We need one trial for one floor and 0
-    // trials for 0 floors
-    for (i = 1; i <= n; i++) {
-        eggFloor[i][1] = 1;
-        eggFloor[i][0] = 0;
+
+    //initialising 1 trial for floor 1 and 0 trials for 0th floor
+    for (xbox = 1; xbox <= n; xbox++) {
+        XboxFloor[xbox][1] = 1;
+        XboxFloor[xbox][0] = 0;
     }
 
     // We always need j trials for one egg
     // and j floors.
     for (j = 1; j <= k; j++)
-        eggFloor[1][j] = j;
+        XboxFloor[1][j] = j;
 
     // Fill rest of the entries in table using
     // optimal substructure property
-    for (i = 2; i <= n; i++) {
-        for (j = 2; j <= k; j++) {
-            eggFloor[i][j] = INT_MAX;
-            for (x = 1; x <= j; x++) {
-                res = 1 + max(
-                              eggFloor[i - 1][x - 1],
-                              eggFloor[i][j - x]);
-                if (res < eggFloor[i][j])
-                    eggFloor[i][j] = res;
+    for (xbox = 2; xbox <= n; xbox++)
+    {
+        for (j = 2; j <= k; j++)
+        {
+            XboxFloor[xbox][j] = INT_MAX;
+            for (x = 1; x <= j; x++)
+            {
+                res = 1 + max(XboxFloor[xbox - 1][x - 1],XboxFloor[xbox][j - x]);
+                if (res < XboxFloor[xbox][j])
+                    XboxFloor[xbox][j] = res;
             }
         }
     }
 
     // eggFloor[n][k] holds the result
-    return eggFloor[n][k];
+    return XboxFloor[n][k];
 }
 
 /* Driver program to test to pront printDups*/
 int main()
 {
-    int n = 2, k = 36;
-    printf("\nMinimum number of trials "
-           "in worst case with %d eggs and "
-           "%d floors is %d \n",
-           n, k, eggDrop(n, k));
+    int xbox = 2;
+    int floors = 120;
+    cout <<  XboxDrop(xbox, floors) << endl;
     return 0;
-} 
+}
