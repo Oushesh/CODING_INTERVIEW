@@ -18,18 +18,5 @@
       Infinite number of constructors can be defined
       as long each has a unique signature(number & type of parameters) The default one has no argument.
 
-      *
-## Reference: https://pastebin.com/3AezR328
-## Reference: https://www
-
-
-"""
-The default constructor is auto-generated if there is no user-declared constructor (§12.1/5).
-The copy constructor is auto-generated if there is no user-declared move constructor or move assignment operator (because there are no move constructors or move assignment operators in C++03, this simplifies to "always" in C++03) (§12.8/8).
-The copy assignment operator is auto-generated if there is no user-declared move constructor or move assignment operator (§12.8/19).
-The destructor is auto-generated if there is no user-declared destructor (§12.4/4).
-C++0x only:
-
-The move constructor is auto-generated if there is no user-declared copy constructor, copy assignment operator or destructor, and if the generated move constructor is valid (e.g. if it wouldn't need to assign constant members) (§12.8/10).
-The move assignment operator is auto-generated if there is no user-declared copy constructor, copy assignment operator or destructor, and if the generated move assignment operator is valid (e.g. if it wouldn't need to assign constant members) (§12.8/21).
-"""
+      * You can actually not provide your own implementation of the default constructor or destructor
+        * =default keyword tells the compiler to use the default implementation which means you cannot provide your own. The default constructor is the one called when no arguments are provided (signature). To disable the default constructor, use "=delete"

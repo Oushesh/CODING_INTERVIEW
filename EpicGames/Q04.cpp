@@ -43,29 +43,57 @@ void BuildStringFromMatrix(int* Matrix, int NumRows, int NumColumns, char* OutBu
     BuildStringFromMatrixRec(Matrix, NumRows, NumColumns, OutBuffer, NumColumns, first);
 }
 
+/*
+
+For testing I used the 2 cases:
+Input:
+
+(3x4) Matrix
+2, 3, 4, 8,
+5, 7, 9, 12,
+1, 0, 6, 10
+
+Output: 2, 3, 4, 8, 5, 7, 9, 12, 1, 0, 6, 10
+
+Input:
+(4x4) Matrix
+
+2, 3, 4, 8,
+5, 7, 9, 12,
+1, 0, 6, 10,
+15, 16, 17, 18
+
+Output: 2, 3, 4, 8, 12, 10, 18, 17, 16, 15, 1, 5, 7, 9, 6, 0
+*/
+
 int main()
 {
   //Performing Unit Tests here
-    {
-        char buf[1024];
-        int size = sizeof(buf)/sizeof(*buf);
-        cout << size << endl;
-        //int m[] = {2, 3, 4, 8, 5, 7, 9, 12, 1, 0, 6, 10};
-        int m[] = {2, 3, 4, 8, 5, 7, 9, 12, 1, 0, 6, 10, 15, 16, 17, 18};
+  char buf[1024];
+  //int size = sizeof(buf)/sizeof(*buf);
+  //cout << size << endl;
 
-        int rows = 4;
-        int columns = 4;
-        //Check for positiveness of the rows, columns
-        assert(rows>0);
-        assert(columns>0);
-        BuildStringFromMatrix(m, rows, columns, buf);
+  int m[] = {2, 3, 4, 8, 5, 7, 9, 12, 1, 0, 6, 10};
+  int rows = 3;
+  int columns = 4;
+  //Check for positiveness of the rows, columns
+  assert(rows>0);
+  assert(columns>0);
+  BuildStringFromMatrix(m, rows, columns, buf);
 
-        cout << buf << endl;
+  cout << buf << endl;
 
-        //assert(buf=="2, 3, 4, 8, 12, 10, 6, 0, 1, 5, 7, 9");
-        //assert(!strcmp(buf, "2, 3, 4, 8, 12, 10, 6, 0, 1, 5, 7, 9"));
+  assert(!strcmp(buf, "2, 3, 4, 8, 12, 10, 6, 0, 1, 5, 7, 9"));
+  cout << "The code gives the desired output" << endl;
 
-        assert(!strcmp(buf, "2, 3, 4, 8, 12, 10, 18, 17, 16, 15, 1, 5, 7, 9, 6, 0"));
-        cout << "The code gives the desired output" << endl;
-    }
+  int rows_x = 4;
+  int columns_x = 4;
+  int x[] = {2, 3, 4, 8, 5, 7, 9, 12, 1, 0, 6, 10, 15, 16, 17, 18};
+  BuildStringFromMatrix(x, rows_x, columns_x, buf);
+  cout << buf << endl;
+
+  assert(!strcmp(buf, "2, 3, 4, 8, 12, 10, 18, 17, 16, 15, 1, 5, 7, 9, 6, 0"));
+  cout << "The code gives the desired output" << endl;
+
+  return 0;
 }

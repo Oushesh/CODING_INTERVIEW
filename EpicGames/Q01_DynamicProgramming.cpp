@@ -21,8 +21,15 @@ For 2 Xboxes --> Floor1 + max(0,DP[1][1])
 
 Space Complexity: Owing to building the table: O(Xbox*Floors), saving varialbes
                   amount to Order of 1 and in Big (O) Notation: O(Xbox*floors)
-Time Complexity: (See below)
+Time Complexity: (See below) We have 2 full independent loops over floors &
+                  Xbox: O(Xbox+floors)
+                  Then we have nested loop over Xbox and Floor O(Xbox*Floor)
 
+                  So in this case: xbox=2, floor=120 --> Big O Notation:
+                  O(Xbox+Floors)--> order of O(n) O(floors) floors>>Xbox
+                  O(Xbox*Floor)--> order of O(n²) but here its close to O(n)
+                  since Xbox<<floor
+                  In total its O(n+n²)--> O(n²)
 */
 #include <limits.h>
 #include <iostream>
@@ -35,10 +42,6 @@ int max(int a, int b)
   else
     return b;
 }
-
-/* Function to get minimum
-number of trials needed in worst
-case with n eggs and k floors */
 
 //returns min. number of trials needed to fit in Formula x/(x+1)/2 = 120
 //We build the 2D Table to save the preprocessing reults

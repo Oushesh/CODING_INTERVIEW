@@ -27,5 +27,8 @@
 
 ## The different algorithimc style solution
   * Dynamic Programming --> Q01DynamicProgramming.cpp
-      * 
-  * Optimised version of the Dynamic Proramming.
+      * Space Complexity: O(Xbox*floors)
+      * Time Complexity: O(Xbox+Floors)+O(Xbox*Floors)
+  * Further Optimised version using Combinatorics --> Q01_further_optimised.cpp
+      * Space Complexity: O(1)
+      * Time Complexity: O(Xboxlog(Floors))
