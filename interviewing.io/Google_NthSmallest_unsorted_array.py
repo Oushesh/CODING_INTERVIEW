@@ -85,7 +85,7 @@ class Solution_nth():
 if __name__ == '__main__':
     number = [3,2,5,6]
     number = [5,6,3,15,11]
-    n      = 3 #second smallests
+    n      = 3 #second smallest
     output = Solution()
     print (output.smallest(number,n))
 

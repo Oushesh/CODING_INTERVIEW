@@ -24,7 +24,7 @@ public:
 	}
 
 	//Function to set all characters to lower alphabets
-	vector <string> 3KeySug(vector <string> rev, vector <string> rep, vector <string> query)
+	vector <string> ThreeKeySug(vector <string> rev, vector <string> rep, vector <string> query)
 	{
 		vector <string> outputs;
 		//sort the vector
@@ -32,7 +32,7 @@ public:
 		//put all characters to lower case
 		std::for_each(lower_rep.begin(),lower_rep.end(),[] (char & c))
 		{
-			c= ::tolower(c);
+			c = ::tolower(c);
 		};
 
 
@@ -71,6 +71,7 @@ public:
 int main()
 {
 	//instantiate the class here
+
 	StringChecker current_string;
 	cout << "The output for the match is the following:" << current_string.
 	return 0;

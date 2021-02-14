@@ -2,8 +2,7 @@
 #Reference to the interview: https://www.youtube.com/watch?v=595NTKwQbwY
 '''
 Fist we define the problem:
-Amazon is building
-
+Amazon is building some stuffs
 '''
 class StrringChecker():
 	def __init__(self,rev,rep,query):
@@ -11,7 +10,7 @@ class StrringChecker():
 		self.rep = rep
 		self.query = query
 
-	def 3KeySug(self):
+	def ThreeKeySug(self):
 		outputs = []
 		lower_rep = sorted([word.lower() for word in self.rep])
 
@@ -27,9 +26,19 @@ class StrringChecker():
 					outputs.append(matchedWords)
 		return outputs
 if __name__ == "__main__":
-	rev =
-	rep =
-	query =
-	current_String = StrringChecker(rev,rep,query)
-	print ('The output for the match is the following:',current_String.3KeySug)
+	#rev: numreviews: 5
+	#rep: repository: ["mobile","mouse","moneypot","monitor","mousepad"]
+	#query: customerQuery: "mouse"
 
+	#Example 2:
+	#rev: 5
+	#["code","codePhone","coddle","coddles","codes"]
+	#query: coddle
+	rev = 5
+	rep = ["code","codePhone","coddles","codes"]
+	query = "coddle"
+	current_string = StrringChecker(rev,rep,query)
+
+	#print (current_string.rev,current_string.rep,current_string.query)
+	print (len(current_string.ThreeKeySug()))
+	print ('The output for the match is the following:',current_string.ThreeKeySug())
