@@ -45,7 +45,6 @@ breakcount = 1, split --> abc, de --> run recursive function
 check on abc, and de. return check_palindrome (abc, de)
 '''
 
-
 class Palindrome:
     #Recursive solution
     def check_string(self,strings,breakcount=0):
