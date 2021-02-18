@@ -45,11 +45,35 @@ class arrangement:
         self.R = R
         self.blocks = blocks
 
+    def permute_iterative(self,num_constraint):
+        '''
+        return number of permutations
+        '''
+        number = num_constraint
+        while (number>0):
+            output=number*number-1
+            number-=number
+        return output
+
+    def permute(self,num_constraint):
+        '''
+        return permutation of a given number
+        Mechanism of permutation is like this:
+        Here we just to recursive call:
+        output! = len(blocks)-num_constraint
+        2 ways to make it: Iterative but I prefer recursive
+        5*4*3*2*1
+        '''
+        if num_constraint==1:
+            return num_constraint
+        return num_constraint*self.permute(num_constraint)
+
+
     def rearrange(self):
         #Edge case: L and R cannot be the same
         assert(not L==R)
         #The other edge case is also to check
-        assert (L+R == len(self.blocks))
+        assert (L+R < len(self.blocks))
 
         if (not blocks==sorted(blocks)):
             blocks = sorted(blocks) #sorted with the min on the left and max on the right
@@ -65,19 +89,27 @@ class arrangement:
         second-=1
 
         #Write a way to write number of combinations
+        #If we had no constraint and we were to arrange the elements without repetition
+        # number of combinations = len(blocks)!
+        #We have a constraint num_constraint = L+R
+        #ouput = len(block) - num_constraint
+        #permutation(output)= answer
 
-
-
+        num_constraint = minimum + second
+        return self.permute_iterative(num_constraint)
 
 
 if __name__ == "__main__":
-    L =
-    R =
-    blocks
+    L = 2
+    R = 1
+    blocks = [1,2,3,4,5,6]
 
     #Unit test check input
-    assert(L==int)
-    assert(R==int)
-    assert(is_instance(blocks,list))
+    assert(isinstance(L,int))
+    assert(isinstance(R,int))
+    assert(isinstance(blocks,list))
+    current_arrangement = arrangement(L,R,blocks)
+    print ('The number of arrangements so one can see blocks based on the constraint given is:',current_arrangement.rearrange())
 
-    print ('The number of arrangements so one can see blocks based on the constraint given is:',)
+    #Using the recusive formulation here:
+    print ('The number of arrangements so one can see blocks based on the constraint given is:',current_arrangement.rearrange())
