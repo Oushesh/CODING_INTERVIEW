@@ -67,7 +67,7 @@ class arrangement:
         '''
         if num_constraint==1:
             return num_constraint
-        return num_constraint*self.permute(num_constraint)
+        return num_constraint*self.permute(num_constraint-1)
 
 
     def rearrange(self):
@@ -105,7 +105,6 @@ class arrangement:
         print ('second',second)
         return self.permute_iterative(num_constraint)
 
-
         #TODO: extend the question to even give the output here:
 
 
@@ -124,13 +123,13 @@ if __name__ == "__main__":
     #Using the recusive formulation here:
     print ('The number of arrangements so one can see blocks based on the constraint given is:',current_arrangement.rearrange())
 
-
-
 '''
 Example: After coding walking the interview just to check (Google Style interview)
 
 We have 2 Left Constraint & 1 Right constraint:
 minimum = right
-
+second = left
+Because the right one being minimum is highest: we will already
+see it from the left side. Cannot block it.
 
 '''
