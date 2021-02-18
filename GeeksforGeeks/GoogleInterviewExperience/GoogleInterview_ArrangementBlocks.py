@@ -53,6 +53,7 @@ class arrangement:
         while (number>0):
             output=number*number-1
             number-=number
+        print ('Factorial',)
         return output
 
     def permute(self,num_constraint):
@@ -75,8 +76,8 @@ class arrangement:
         #The other edge case is also to check
         assert (L+R < len(self.blocks))
 
-        if (not blocks==sorted(blocks)):
-            blocks = sorted(blocks) #sorted with the min on the left and max on the right
+        if (not self.blocks==sorted(self.blocks)):
+            self.blocks = sorted(self.blocks) #sorted with the min on the left and max on the right
 
         '''
         if L=2, R=1 --> From right I can only seen 1 block across., From left
@@ -84,9 +85,12 @@ class arrangement:
         '''
         #We take the minimum from L and R
         minimum = min(L,R)
+
         #second is just not the min.
         second = max(L,R)
         second-=1
+
+
 
         #Write a way to write number of combinations
         #If we had no constraint and we were to arrange the elements without repetition
@@ -95,8 +99,14 @@ class arrangement:
         #ouput = len(block) - num_constraint
         #permutation(output)= answer
 
-        num_constraint = minimum + second
+        num_constraint = len(self.blocks)+1-(minimum+second)
+
+        print ('num_constraint',num_constraint)
+        print ('second',second)
         return self.permute_iterative(num_constraint)
+
+
+        #TODO: extend the question to even give the output here:
 
 
 if __name__ == "__main__":
@@ -113,3 +123,14 @@ if __name__ == "__main__":
 
     #Using the recusive formulation here:
     print ('The number of arrangements so one can see blocks based on the constraint given is:',current_arrangement.rearrange())
+
+
+
+'''
+Example: After coding walking the interview just to check (Google Style interview)
+
+We have 2 Left Constraint & 1 Right constraint:
+minimum = right
+
+
+'''
