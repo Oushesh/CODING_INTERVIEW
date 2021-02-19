@@ -23,7 +23,7 @@ class Arrangement
     int L;
     int R;
     vector <int> blocks;
-  //Constructor
+    //Constructor
   Arrangement(int L,int R, vector <int> blocks)
   {
     this->L = L;
@@ -73,4 +73,5 @@ int main()
   cout << "The number of combinations is:" << rearrange(blocks,L,R)<< endl;
 }
 
-//TODO:
+//TODO: use cassert to write tests.
+//TODO: To check and send jadaav this assignment
