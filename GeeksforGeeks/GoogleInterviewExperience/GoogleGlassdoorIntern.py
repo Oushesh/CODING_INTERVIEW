@@ -60,12 +60,34 @@ Assume: N posts in sequence. --> list  [1,2,3,4,5]  5 posts
 
 '''
 class Fence:
-    def combinations(self,):
+    def factorial(self,n):
+        if n==1:
+            return n
+        return n*self.factorial(n-1)
+
+    def combinations(self,posts,colors):
+        if len(posts)%2==0:
+            doublets = self.factorial(len(posts)/2)
+            #3 2 1 3 2 1 --> Factorial of 3 here is repeated by the times we can
+            #fit them in the array
+            singlets = self.factorial(len(colors))*len(posts)/len(colors)
+        else:
+            doublets = self.factorial(int(len(posts)/2))*(len(colors)-1)
+            #3 2 1 3 2 1
+            #Factorial of 3 here is
+            singlets = self.factorial(len(colors))*len(posts)/len(colors)
+
+        combination = doublets + singlets
         return combination
 
 if __name__ = "__main__":
-    posts =
-    colors =
-    constraints =
+    '''
+    constraints, K = 2 (no more than 2 fences are allowed to have the same color)
+    '''
+    posts = [1,2,3,4,5,6]
+    colors = ['R','G','B']
+    #constraints, K
 
     print ('The number of possibilities to color the posts is:',)
+
+#TODO: complete this, debug and write a version for C++
