@@ -57,7 +57,6 @@ Assume: N posts in sequence. --> list  [1,2,3,4,5]  5 posts
         at no given time there should more than 2 of the same colour within the sliding window.
         We use this logic to place the stuffs.
         R G B
-
 '''
 class Fence:
     def factorial(self,n):
@@ -67,27 +66,64 @@ class Fence:
 
     def combinations(self,posts,colors):
         if len(posts)%2==0:
-            doublets = self.factorial(len(posts)/2)
+            doublet = self.factorial(len(posts)/2)
+            print (doublet)
             #3 2 1 3 2 1 --> Factorial of 3 here is repeated by the times we can
             #fit them in the array
-            singlets = self.factorial(len(colors))*len(posts)/len(colors)
+            if len(posts)%len(colors)==0:
+                singlet = self.factorial(len(colors))*len(posts)/len(colors)
+                print (singlet)
+            else:
+                #We fit the 3 2 1 one by one
+                singlets = []
+                start = len(colors)
+                for i in range(len(posts)):
+                    if start==1:
+                        start = len(colors)
+                    singlets.append(start)
+                    start-=1
+                singlet = sum(singlets)
+
+                print (singlet)
         else:
-            doublets = self.factorial(int(len(posts)/2))*(len(colors)-1)
+            doublet = self.factorial(int(len(posts)/2))*(len(colors)-1)
             #3 2 1 3 2 1
-            #Factorial of 3 here is
-            singlets = self.factorial(len(colors))*len(posts)/len(colors)
+            #Factorial of 3 here is 3*2*1
+            if len(posts)%len(colors)==0:
+                singlet = self.factorial(len(colors))*len(posts)/len(colors)
+            else:
+                #We fit the 3 2 1 one by one
+                singlets = []
+                start = len(colors)
+                for i in range(len(posts)):
+                    if start==1:
+                        start = len(colors)
+                    singlets.append(start)
+                    start-=1
+                singlet =  sum(singlets)
 
-        combination = doublets + singlets
-        return combination
+        combinations = int (doublet + singlet)
+        return combinations
 
-if __name__ = "__main__":
+    #Extending the function to a more general form
+    # TODO: Extend the function to fit a general form
+    def combinations_general(self,posts,colors,constraints):
+        if len(posts)%len()==0:
+            doublets = self.factorial(len(posts))
+
+
+
+if __name__ == "__main__":
     '''
     constraints, K = 2 (no more than 2 fences are allowed to have the same color)
+    Singlet: [3,2,1,3,2,1]
     '''
+
     posts = [1,2,3,4,5,6]
     colors = ['R','G','B']
     #constraints, K
-
-    print ('The number of possibilities to color the posts is:',)
+    constraints = 2
+    given_fence = Fence()
+    print ('The number of possibilities to color the posts is:',given_fence.combinations(posts,colors))
 
 #TODO: complete this, debug and write a version for C++

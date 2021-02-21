@@ -92,7 +92,6 @@ class arrangement:
         second-=1
 
 
-
         #Write a way to write number of combinations
         #If we had no constraint and we were to arrange the elements without repetition
         # number of combinations = len(blocks)!
