@@ -18,6 +18,7 @@ R=1:  [1,2,3]
 [1,2,3]
 [2,1,3]
 
+Approach 1:
 Indepentenly sort possibilities for Constraint 1, then for Constraint 2.
 
 Find the intersecting possiblity that match both.
@@ -26,7 +27,8 @@ That was approach 1: Time Complexity: O(2n) Big O(notation): o(N)
                      Space Complexity: number of possibilities.
 
 
-Can we do better? What if while
+Approach 2:
+Can we do better? What if while if we try something else:
 
 Example: 1,2,3,4,5,6
          from a sorted list we take n highest
@@ -53,7 +55,6 @@ class arrangement:
         while (number>0):
             output=number*number-1
             number-=number
-        print ('Factorial',)
         return output
 
     def permute(self,num_constraint):
