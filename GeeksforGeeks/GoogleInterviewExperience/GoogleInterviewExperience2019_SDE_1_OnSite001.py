@@ -60,7 +60,7 @@ class MarathonNumbers():
         '''
         Split the numbers then pass int(individually) into dict and get the output.
         '''
-        for i in self.number.split(' '):
+        for i in self.number:
             if int(i)>=self.min and int(i)<=self.max:
                 if int(i) in rot:
                     if rot[int(i)]=='undef':
@@ -68,6 +68,16 @@ class MarathonNumbers():
         return True
 
     def mirrored_number(self):
+        output = []
+        rot = self.rot_complement()
+        for i in self.number:
+            print (i)
+            if int(i)>=self.min and int(i)<=self.max:
+                if int(i) in rot:
+                    if not rot[int(i)]=='undef':
+                        output.append(rot[int(i)])
+
+        return output
 
 
 if __name__ =="__main__":
@@ -78,6 +88,6 @@ if __name__ =="__main__":
     interval = [min,max]
     marathon_run = MarathonNumbers(number, interval)
     print ('The number is a marathon number',marathon_run.is_good())
+    print ('The mirrored_number is:',marathon_run.mirrored_number())
 
-#TODO: To debug and check and write in C++
-#make readme for Jadaav.
+#TODO: C++ add the work here

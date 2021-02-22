@@ -28,10 +28,7 @@ if sorted: [1,3,4,5,6,7,10] --> real_mid is 5, max is 10
 Pseudocode:
 If we use random how do we decide mid? Check the hint
 
-
-
 Binary Search Tree Condition: left<mid<right
-
 
 Instead of randomising the numbers: we randomise the index(0,len(numbers))
 visited = set()
@@ -46,8 +43,6 @@ if rand not in visited:
             query(left) --> i-1
             query(right) --> i+1
     output.append(swap(a,b)) append
-
-
 
 Time Complexity: O(n)
 Space Complexity: O(n)
@@ -84,7 +79,7 @@ class RandomBinarySearch():
         until we did not have all the indices here
         '''
         while not len(visited)==len(numbers):
-            rand=self.rand(interval,numbers)
+            rand = self.rand(interval,numbers)
             if rand not in visited:
                 while numbers[left]<numbers[rand]<numbers[right]:
                     if rand is None:
@@ -111,5 +106,4 @@ if __name__ == "__main__":
     print ('The max is ',RandomBinarySearch())
     print ('The mid is',RandomBinarySearch())
 
-
-###TODO: debug and crosscheck
+###TODO: debug and crosscheck: 

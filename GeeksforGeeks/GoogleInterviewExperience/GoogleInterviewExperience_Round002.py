@@ -149,7 +149,7 @@ class CoinGame:
 
          return grid
 
-
+    #To Draw the paths for best output.
     def max_paths(self,grid):
 
             return max
