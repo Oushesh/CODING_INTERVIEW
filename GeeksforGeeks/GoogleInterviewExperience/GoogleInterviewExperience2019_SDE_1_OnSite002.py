@@ -14,3 +14,5 @@ Why you are leaving before 1 year?
 What is your plan for 2 years in technical and non-technical aspects?
 Do you have any questions for me?
 '''
+
+#TODO: Nail this fucking interview

@@ -18,7 +18,7 @@ def Compare(predicted,expected):
 
 #Input: 2D points
 #linear model: y= mx+b
-##
+#points:
 # ()
 
 def fit(points,candidates):
@@ -36,9 +36,15 @@ def fit(points,candidates):
     return mse
 
 
+
+###TO Do numberic Computations fast in an interview I will use the map reduce functionality of python.
+
+
 if __name__ == "__main__":
 
     points = [[0, 0], [1, 1], [1.9, 2], [3, 3.2], [4, 4.1], [5, 5.11]]
     candidates = [[1, 0], [2, 1], [0.5, 1], [1.01, 0], [1, 0.1]]
 
     print ('The mse error is:',fit(points,candidates))
+
+#TODO: Kill the intervier: COuld have used: map(function,inputs) formulation

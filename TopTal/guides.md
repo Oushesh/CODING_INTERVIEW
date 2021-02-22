@@ -5,3 +5,4 @@
 ## Example Coding Interview Questions for Toptal:
   * https://www.toptal.com/algorithms/interview-questions
   * https://www.youtube.com/watch?v=NTCRFASmSlA
+  * https://carlosroso.com/this-is-what-i-did-to-ace-the-toptal-interview/

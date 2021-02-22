@@ -35,6 +35,4 @@ Pseudo Code:
 TODO: Redefine the Question properly.
 '''
 
-
-
 #TODO: To recheck the formulation of the question: https://www.geeksforgeeks.org/google-interview-onsite-university-grad-2020/?ref=rp
