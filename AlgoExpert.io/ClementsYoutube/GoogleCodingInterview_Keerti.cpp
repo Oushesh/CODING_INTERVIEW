@@ -1,9 +1,10 @@
 /*
+Author: Oushesh based on the question asked by Clements Mihalescu
+We fucking nail this shit.
 */
 #include <iostream>
 #include <algorithm>
 #include <vector>
-
 /*
 Unordered map C++ Programming Guide:
 https://www.geeksforgeeks.org/map-vs-unordered_map-c/
@@ -23,7 +24,6 @@ class PermutationString
 
 	}
 
-
 	int PermutationsContaintedinString()
 	{
 		int count = 0;
@@ -34,12 +34,10 @@ class PermutationString
 
 };
 
-
 int main()
 {
 	vector <char> BigString = {};
 	vector <char> SmallString = {};
-
 	return 0;
 }
 
