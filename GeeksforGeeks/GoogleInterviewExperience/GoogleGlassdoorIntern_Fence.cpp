@@ -1,16 +1,29 @@
 /*
 There is a fence with n posts, each post can be painted with one of the k colors.
 You have to paint all the posts such that no more than two adjacent fence posts have the same color.
-Return the total number of ways you can paint the fence
+Return the total number of ways you can paint the fence.
+
+Combination of Singlets & Doublets combination:
+Singlets: factorial(n) 5*4*3*2*1
+Here len(colors)=2
+Doublets: RR,BB,GG,BB --> len(posts)/len(colors) --> perform permutation on each pair of cell
+if len(posts)=n then doublets=factorial(n/2)
+combination_number = singlet + doublet
+
+n=3,
+triplet each 3 of them: RRR GGG BBB permutation(for every 3 cells)
+                        factorial(len(posts)/len(colors))
+
+                        triplets, doublets, singlets
+
+n=5, 
 */
 
 #include <iostream>
 #include <vector>
 
 using namespace std;
-
 //I prefer the recursive implementation. To hell with iterative
-
 int sum(vector <int> vec)
 {
   int sum=0;

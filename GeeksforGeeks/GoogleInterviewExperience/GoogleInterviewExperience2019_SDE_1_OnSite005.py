@@ -31,8 +31,11 @@ being minimised:
 
 1,2,4,7,3,6 |9|
 
+subaraay_count : keep track
 max = 9
 3, 9
-7, 9
+|7| |7|, |3,6| |9|
 14,15
 '''
+
+#TODO: COmplete by tomorrow.
