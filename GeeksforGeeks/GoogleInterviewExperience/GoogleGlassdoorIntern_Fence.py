@@ -83,7 +83,6 @@ class Fence:
                     singlets.append(start)
                     start-=1
                 singlet = sum(singlets)
-
                 print (singlet)
         else:
             doublet = self.factorial(int(len(posts)/2))*(len(colors)-1)
@@ -111,14 +110,11 @@ class Fence:
         if len(posts)%len()==0:
             doublets = self.factorial(len(posts))
 
-
-
 if __name__ == "__main__":
     '''
     constraints, K = 2 (no more than 2 fences are allowed to have the same color)
     Singlet: [3,2,1,3,2,1]
     '''
-
     posts = [1,2,3,4,5,6]
     colors = ['R','G','B']
     #constraints, K
