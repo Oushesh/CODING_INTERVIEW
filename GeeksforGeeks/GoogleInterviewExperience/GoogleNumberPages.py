@@ -19,5 +19,4 @@ everything that lower than the mid can be on the left
 i) mid,
 ii) left,
 iii) right,
-
 '''

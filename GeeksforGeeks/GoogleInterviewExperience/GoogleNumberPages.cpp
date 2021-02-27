@@ -24,8 +24,10 @@ iii) right,
 
 #include <iostream>
 #include <vector>
-#include <assert>
+#include <assert.h>
+#include <climits>
 
+//assert is used to find if there a condition is true
 using namespace std;
 //Utility Function to check fi current
 //minimum value is feasible or not.
@@ -63,17 +65,17 @@ bool isPossible(vector <int> books,int n, int m, int curr_min)
   return true;
 }
 
-int finMinPages(vector <int> & pages, int m, int n)
+int findMinPages(vector <int> & pages, int m, int n)
 {
   sum = 0;
-  //
   assert(m>n);
 
   //Count total number of pages.
   for (int i=0;i<n;i++)
     sum+=vec[i];
 
-  int start=0;end=sum;
+  int start=0;
+  end=sum;
   int result = INT_MAX; //C++ limits
 
   //Binary Search, start, end part of the the array
@@ -107,9 +109,31 @@ int main()
   vector <int> books = {12,34,67,90};
   int n = books.size(); //number of books here.
   int m = 2; //number of students
-  cout << "The minimum required number of pages is:" findMinPages(books,n,m)<< endl;
+  cout << "The minimum required number of pages is:" << findMinPages(books,n,m)<< endl;
   return 0;
 }
 
-//Take this example: [12,34,67,90]
-//
+//Let's walk the interviewer through the experience here:
+
+//Take this example: [12,34,45,67,90]
+//First iteration of Binary Search:
+//Lets say k=2., we need just to split the array into 2.
+//Just normal Binary Search
+
+//mid <high, lower <mid-> if not swap the numbers.
+
+
+//Lets say array = [12,34,45]
+//mid = 34, low= 12, high --> keep track of the cur_mid=34
+
+//The big thing is how to connect the
+
+/*
+'''
+[12,34,45,90,47,89,2,1], K=4
+
+1.K=1--> (all array)= (sum(array)),
+//K=2, all possibilities: [12| 34,45,90,47,89,2,1]->max of all the possibilities here.
+
+'''
+*/
