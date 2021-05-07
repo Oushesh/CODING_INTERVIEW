@@ -61,7 +61,6 @@ class Island():
                 if map[i][j] == "1":
                     self.onboard(i, j,m,n)
                     count += 1
-
         return count
 
 if __name__ == "__main__":
