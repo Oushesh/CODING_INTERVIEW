@@ -23,15 +23,14 @@ def make_graph(words):
             #graph[ch1].add(ch2)
     return graph
 
-
 def topological_sort(graph):
     # Get incoming degrees
-    indegrees = {node: 0 for node in graph}
-    print (indegrees)
+    in_degrees = {node: 0 for node in graph}
+    print (in_degrees)
     for node in graph:
         for neighbour in graph[node]:
-            indegrees[neighbour]+=1
-    print (indegrees)
+            in_degrees[neighbour]+=1
+    print (in_degrees)
     # Track node with no incoming edges.
     no_incoming = []
     for node in graph:

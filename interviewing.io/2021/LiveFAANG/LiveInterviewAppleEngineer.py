@@ -115,7 +115,6 @@ class Node:
         self.left = None
         self.right = None
 
-
 def level_order_traversal(root):
     # Base Case
     if root is None:
@@ -133,7 +132,6 @@ def level_order_traversal(root):
             output.append(queue[-1])
             queue.append(node.right)
     return output
-
 
 def rightmost(root):
     if not root:

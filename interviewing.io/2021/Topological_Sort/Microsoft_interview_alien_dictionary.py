@@ -30,7 +30,6 @@ def topological(words, graph):
         for c1, c2 in zip(word1, word2):
             if c1 != c2:
                 graph[c2].add(c1)
-
                 break
         else:
             if len(word1) > len(word2):

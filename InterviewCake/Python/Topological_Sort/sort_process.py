@@ -1,5 +1,6 @@
 '''
 Reference: https://www.interviewcake.com/concept/java/topological-sort
+
 The following is an undirected graph:
 
 1. The ingredients have to be mixed before going to
@@ -16,7 +17,6 @@ the batter can be poured in.
 
 Lets say we have the graph:
 
-
 Mix Ingredients: Mix
 Add Batter to Pan: Batter
 Grease/Flour Pan: Grease
@@ -26,20 +26,46 @@ Frost Cake: FC
 Cool Cake: Cool
 Bake Cake: Bake
 Preheat Oven: Preheat
-
 '''
 
-def make_graph():
+from collections import defaultdict
+
+def make_graph(edges):
+    graph = {}
+    for edge in edges:
+        graph[edge[0]] = edge[1]
     return graph
 
-def topoological_sort(graph):
-    return sorted_graph
+def topological_sort(graph):
+    # Build an in_degrees to know the in_degree of each frame
+
+    in_degrees = {node: 0 for node in graph}  # initialise the node value to 0
+    print (in_degrees)
+
+    for node in graph:
+        print('node', node)
+        for neighbour in graph[node]:
+            in_degrees[neighbour] += 1
+
+    return in_degrees
+
 
 if __name__ == "__main__":
-    edges = [['Mix','Batt'],['Batt','Bake'],['Frosting','FC'],['FC','D'],[]]
+    edges = [['Mix', 'Batt'],
+             ['Batt', 'Bake'],
+             ['Frosting', 'FC'],
+             ['FC', 'D'],
+             ['Cool', 'FC'],
+             ['BC', 'CC',
+              ['PC', 'BC'],
+              ['Preheat', 'BC']]]
+
     graph = make_graph(edges)
-    sorted_graph = topoological_sort(graph)
+    print('graph', graph)
 
+    sorted_graph = topological_sort(graph)
+    # print ('sorted_graph',sorted_graph)
 
-#TODO: Test and complete the code.
-#Next step extend Topological sorting idea to other problems.
+# TODO: Test and complete the code.
+# Next step extend Topological sorting idea to other problems.
+# Complete and nail all coding interview problems. 4 USA
