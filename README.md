@@ -8,5 +8,5 @@ Online interviews recorded here: interviewing.io
 ## use code sandbox pro for web development (startup mindset)
 
 ## TODOs.
-   * Purchase Algoexpert and try all of them and kill the interview
+   * (Build your own stuffs):Purchase Algoexpert and try all of them and kill the interview
    * 
